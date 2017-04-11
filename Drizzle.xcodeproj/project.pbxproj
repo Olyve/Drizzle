@@ -14,6 +14,12 @@
 		228A2A521E9D3FE600D991E5 /* DrizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A511E9D3FE600D991E5 /* DrizzleTests.swift */; };
 		228A2A5E1E9D405200D991E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A5C1E9D405200D991E5 /* HomeViewController.swift */; };
 		228A2A621E9D44EA00D991E5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */; };
+		22D4F3211E9D4E6200AF8F7F /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */; };
+		22D4F3221E9D4E6200AF8F7F /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */; };
+		22D4F3231E9D4E6200AF8F7F /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31C1E9D4E5B00AF8F7F /* Quicksand-Italic.otf */; };
+		22D4F3241E9D4E6200AF8F7F /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31D1E9D4E5B00AF8F7F /* Quicksand-Light.otf */; };
+		22D4F3251E9D4E6200AF8F7F /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31E1E9D4E5B00AF8F7F /* Quicksand-LightItalic.otf */; };
+		22D4F3261E9D4E6200AF8F7F /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31F1E9D4E5B00AF8F7F /* Quicksand-Regular.otf */; };
 		AA43535FB5DBF25037A83638 /* Pods_Drizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE8B883E92664C544F0B6739 /* Pods_Drizzle.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +44,12 @@
 		228A2A531E9D3FE600D991E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		228A2A5C1E9D405200D991E5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
+		22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
+		22D4F31C1E9D4E5B00AF8F7F /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Italic.otf"; sourceTree = "<group>"; };
+		22D4F31D1E9D4E5B00AF8F7F /* Quicksand-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.otf"; sourceTree = "<group>"; };
+		22D4F31E1E9D4E5B00AF8F7F /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
+		22D4F31F1E9D4E5B00AF8F7F /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		3E09C8F8B1368B5BF446F61F /* Pods-Drizzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drizzle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drizzle/Pods-Drizzle.release.xcconfig"; sourceTree = "<group>"; };
 		5D97BA4F728D88F5F660A695 /* Pods-DrizzleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrizzleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DrizzleTests/Pods-DrizzleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4672317DAF76FE343F50842 /* Pods-DrizzleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrizzleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DrizzleTests/Pods-DrizzleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +124,12 @@
 				228A2A431E9D3FE600D991E5 /* Assets.xcassets */,
 				228A2A481E9D3FE600D991E5 /* Info.plist */,
 				228A2A451E9D3FE600D991E5 /* LaunchScreen.storyboard */,
+				22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */,
+				22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */,
+				22D4F31C1E9D4E5B00AF8F7F /* Quicksand-Italic.otf */,
+				22D4F31D1E9D4E5B00AF8F7F /* Quicksand-Light.otf */,
+				22D4F31E1E9D4E5B00AF8F7F /* Quicksand-LightItalic.otf */,
+				22D4F31F1E9D4E5B00AF8F7F /* Quicksand-Regular.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -229,6 +247,13 @@
 			files = (
 				228A2A471E9D3FE600D991E5 /* LaunchScreen.storyboard in Resources */,
 				228A2A441E9D3FE600D991E5 /* Assets.xcassets in Resources */,
+				22D4F3241E9D4E6200AF8F7F /* Quicksand-Light.otf in Resources */,
+				22D4F3221E9D4E6200AF8F7F /* Quicksand-BoldItalic.otf in Resources */,
+				22D4F3261E9D4E6200AF8F7F /* Quicksand-Regular.otf in Resources */,
+				221CD1021E9D47B100D01826 /* HomeViewController.xib in Resources */,
+				22D4F3211E9D4E6200AF8F7F /* Quicksand-Bold.otf in Resources */,
+				22D4F3251E9D4E6200AF8F7F /* Quicksand-LightItalic.otf in Resources */,
+				22D4F3231E9D4E6200AF8F7F /* Quicksand-Italic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
