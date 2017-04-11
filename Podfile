@@ -9,7 +9,9 @@ target 'Drizzle' do
 
   target 'DrizzleTests' do
     inherit! :search_paths
-
+    
+    pod 'Nimble'
+    pod 'Quick'
     pod 'RxBlocking'
     pod 'RxTest'
   end
