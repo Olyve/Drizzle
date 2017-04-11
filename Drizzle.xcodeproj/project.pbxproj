@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		228A2A3D1E9D3FE600D991E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */; };
-		228A2A3F1E9D3FE600D991E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A3E1E9D3FE600D991E5 /* ViewController.swift */; };
 		228A2A421E9D3FE600D991E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A401E9D3FE600D991E5 /* Main.storyboard */; };
 		228A2A441E9D3FE600D991E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A431E9D3FE600D991E5 /* Assets.xcassets */; };
 		228A2A471E9D3FE600D991E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A451E9D3FE600D991E5 /* LaunchScreen.storyboard */; };
 		228A2A521E9D3FE600D991E5 /* DrizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A511E9D3FE600D991E5 /* DrizzleTests.swift */; };
+		228A2A5E1E9D405200D991E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A5C1E9D405200D991E5 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +28,6 @@
 /* Begin PBXFileReference section */
 		228A2A391E9D3FE600D991E5 /* Drizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		228A2A3E1E9D3FE600D991E5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		228A2A411E9D3FE600D991E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		228A2A431E9D3FE600D991E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		228A2A461E9D3FE600D991E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +35,7 @@
 		228A2A4D1E9D3FE600D991E5 /* DrizzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrizzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		228A2A511E9D3FE600D991E5 /* DrizzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrizzleTests.swift; sourceTree = "<group>"; };
 		228A2A531E9D3FE600D991E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		228A2A5C1E9D405200D991E5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */,
-				228A2A3E1E9D3FE600D991E5 /* ViewController.swift */,
+				228A2A5C1E9D405200D991E5 /* HomeViewController.swift */,
 				228A2A401E9D3FE600D991E5 /* Main.storyboard */,
-				228A2A431E9D3FE600D991E5 /* Assets.xcassets */,
-				228A2A451E9D3FE600D991E5 /* LaunchScreen.storyboard */,
-				228A2A481E9D3FE600D991E5 /* Info.plist */,
+				228A2A601E9D40A800D991E5 /* Resources */,
 			);
 			path = Drizzle;
 			sourceTree = "<group>";
@@ -94,6 +92,16 @@
 				228A2A531E9D3FE600D991E5 /* Info.plist */,
 			);
 			path = DrizzleTests;
+			sourceTree = "<group>";
+		};
+		228A2A601E9D40A800D991E5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				228A2A431E9D3FE600D991E5 /* Assets.xcassets */,
+				228A2A481E9D3FE600D991E5 /* Info.plist */,
+				228A2A451E9D3FE600D991E5 /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				228A2A3F1E9D3FE600D991E5 /* ViewController.swift in Sources */,
 				228A2A3D1E9D3FE600D991E5 /* AppDelegate.swift in Sources */,
+				228A2A5E1E9D405200D991E5 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +351,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5J68VQM656;
 				INFOPLIST_FILE = Drizzle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.samgalizia.Drizzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -356,6 +365,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5J68VQM656;
 				INFOPLIST_FILE = Drizzle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.samgalizia.Drizzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
