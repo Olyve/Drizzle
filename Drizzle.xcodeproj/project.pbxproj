@@ -12,7 +12,6 @@
 		228A2A3D1E9D3FE600D991E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */; };
 		228A2A441E9D3FE600D991E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A431E9D3FE600D991E5 /* Assets.xcassets */; };
 		228A2A471E9D3FE600D991E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A451E9D3FE600D991E5 /* LaunchScreen.storyboard */; };
-		228A2A521E9D3FE600D991E5 /* DrizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A511E9D3FE600D991E5 /* DrizzleTests.swift */; };
 		228A2A5E1E9D405200D991E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A5C1E9D405200D991E5 /* HomeViewController.swift */; };
 		228A2A621E9D44EA00D991E5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */; };
 		22D4F3211E9D4E6200AF8F7F /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */; };
@@ -42,7 +41,6 @@
 		228A2A461E9D3FE600D991E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		228A2A481E9D3FE600D991E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		228A2A4D1E9D3FE600D991E5 /* DrizzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrizzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		228A2A511E9D3FE600D991E5 /* DrizzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrizzleTests.swift; sourceTree = "<group>"; };
 		228A2A531E9D3FE600D991E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		228A2A5C1E9D405200D991E5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 		228A2A501E9D3FE600D991E5 /* DrizzleTests */ = {
 			isa = PBXGroup;
 			children = (
-				228A2A511E9D3FE600D991E5 /* DrizzleTests.swift */,
 				228A2A531E9D3FE600D991E5 /* Info.plist */,
 			);
 			path = DrizzleTests;
@@ -377,7 +374,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				228A2A521E9D3FE600D991E5 /* DrizzleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
