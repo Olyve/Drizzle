@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		22054A865BC2F6957B698EDF /* Pods_DrizzleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE1B03B33B0640E3550DA8F /* Pods_DrizzleTests.framework */; };
 		228A2A3D1E9D3FE600D991E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */; };
-		228A2A421E9D3FE600D991E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A401E9D3FE600D991E5 /* Main.storyboard */; };
 		228A2A441E9D3FE600D991E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A431E9D3FE600D991E5 /* Assets.xcassets */; };
 		228A2A471E9D3FE600D991E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A451E9D3FE600D991E5 /* LaunchScreen.storyboard */; };
 		228A2A521E9D3FE600D991E5 /* DrizzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A511E9D3FE600D991E5 /* DrizzleTests.swift */; };
@@ -31,7 +30,6 @@
 /* Begin PBXFileReference section */
 		228A2A391E9D3FE600D991E5 /* Drizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		228A2A411E9D3FE600D991E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		228A2A431E9D3FE600D991E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		228A2A461E9D3FE600D991E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		228A2A481E9D3FE600D991E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */,
 				228A2A5C1E9D405200D991E5 /* HomeViewController.swift */,
 				228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */,
-				228A2A401E9D3FE600D991E5 /* Main.storyboard */,
 				228A2A601E9D40A800D991E5 /* Resources */,
 			);
 			path = Drizzle;
@@ -232,7 +229,6 @@
 			files = (
 				228A2A471E9D3FE600D991E5 /* LaunchScreen.storyboard in Resources */,
 				228A2A441E9D3FE600D991E5 /* Assets.xcassets in Resources */,
-				228A2A421E9D3FE600D991E5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,14 +364,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		228A2A401E9D3FE600D991E5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				228A2A411E9D3FE600D991E5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		228A2A451E9D3FE600D991E5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
