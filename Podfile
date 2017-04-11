@@ -6,6 +6,7 @@ target 'Drizzle' do
 
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'SwiftyJSON'
 
   target 'DrizzleTests' do
     inherit! :search_paths
