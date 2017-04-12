@@ -16,6 +16,7 @@
 		228A2A621E9D44EA00D991E5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */; };
 		228DAD401E9D65840019F867 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DAD3F1E9D65840019F867 /* Location.swift */; };
 		228DAD431E9D6A1D0019F867 /* HomeViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DAD421E9D6A1D0019F867 /* HomeViewModelSpec.swift */; };
+		228DAD501E9E92400019F867 /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DAD4F1E9E92400019F867 /* ColorUtilities.swift */; };
 		22D4F3211E9D4E6200AF8F7F /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */; };
 		22D4F3221E9D4E6200AF8F7F /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */; };
 		22D4F3231E9D4E6200AF8F7F /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31C1E9D4E5B00AF8F7F /* Quicksand-Italic.otf */; };
@@ -49,6 +50,7 @@
 		228DAD3F1E9D65840019F867 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		228DAD411E9D6A1D0019F867 /* DrizzleTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrizzleTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		228DAD421E9D6A1D0019F867 /* HomeViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModelSpec.swift; sourceTree = "<group>"; };
+		228DAD4F1E9E92400019F867 /* ColorUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
 		22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
 		22D4F31C1E9D4E5B00AF8F7F /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Italic.otf"; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */,
+				228DAD4F1E9E92400019F867 /* ColorUtilities.swift */,
 				228A2A5C1E9D405200D991E5 /* HomeViewController.swift */,
 				221CD1011E9D47B100D01826 /* HomeViewController.xib */,
 				228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */,
@@ -376,6 +379,7 @@
 				228A2A3D1E9D3FE600D991E5 /* AppDelegate.swift in Sources */,
 				228A2A621E9D44EA00D991E5 /* HomeViewModel.swift in Sources */,
 				228DAD401E9D65840019F867 /* Location.swift in Sources */,
+				228DAD501E9E92400019F867 /* ColorUtilities.swift in Sources */,
 				228A2A5E1E9D405200D991E5 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
