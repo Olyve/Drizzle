@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Bold.otf">
+            <string>Quicksand-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChooseLocationViewController" customModule="Drizzle" customModuleProvider="target">
+            <connections>
+                <outlet property="addressLabel" destination="l8r-tx-z7u" id="GKD-vc-8cC"/>
+                <outlet property="backButton" destination="OdA-Pk-als" id="5eL-ep-fVr"/>
+                <outlet property="locationTextField" destination="dSQ-yB-yWq" id="5OW-rg-CTc"/>
+                <outlet property="verifyButton" destination="dHM-9H-int" id="PbC-J4-hoL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUU-1i-rK6">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="iJd-LO-1hM"/>
+                    </constraints>
+                    <color key="barTintColor" red="0.90196078431372551" green="0.87710469960000004" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <textAttributes key="titleTextAttributes">
+                        <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="20"/>
+                        <color key="textColor" red="0.30196078430000001" green="0.31372549020000001" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Choose Home Location" id="SuS-2D-P0l">
+                            <barButtonItem key="leftBarButtonItem" title="Back" id="OdA-Pk-als">
+                                <color key="tintColor" red="0.30196078431372547" green="0.31372549019607843" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="backTapped" destination="-1" id="9PL-KU-snK"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your city or zip code. In a larger city like New York, you can even enter your borough!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SA-4d-pUX">
+                    <rect key="frame" x="32" y="96" width="311" height="56"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="16"/>
+                    <color key="textColor" red="0.90196078430000004" green="0.87710469960000004" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drizzle only stores this location locally on your phone and you can change your home location at a later time." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xG-WU-Xur">
+                    <rect key="frame" x="32" y="609" width="311" height="42"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="12"/>
+                    <color key="textColor" red="0.90052312612533569" green="0.87706887722015381" blue="0.85199755430221558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex. New York, NY or 48168" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="dSQ-yB-yWq">
+                    <rect key="frame" x="36" y="184" width="303" height="30"/>
+                    <color key="textColor" red="0.30323192477226257" green="0.31190592050552368" blue="0.3499113917350769" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Does this location look correct?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aM-gb-reU">
+                    <rect key="frame" x="63.5" y="246" width="249" height="19"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="16"/>
+                    <color key="textColor" red="0.90052312609999996" green="0.87706887720000004" blue="0.85199755430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHM-9H-int" customClass="DrizzleBorderButton" customModule="Drizzle" customModuleProvider="target">
+                    <rect key="frame" x="112.5" y="544" width="150" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="9o9-MC-oRq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="18"/>
+                    <state key="normal" title="Verify Location">
+                        <color key="titleColor" red="0.65098039215686276" green="0.63137254901960782" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="verifyLocationTapped" destination="-1" eventType="touchUpInside" id="XlD-WH-wpp"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1317 1st Avenue New York, NY 10021" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8r-tx-z7u">
+                    <rect key="frame" x="64" y="329" width="247" height="37.5"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="16"/>
+                    <color key="textColor" red="0.90052312609999996" green="0.87706887720000004" blue="0.85199755430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.30196078431372547" green="0.31372549019607843" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9xG-WU-Xur" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="3BW-vl-tvs"/>
+                <constraint firstAttribute="trailing" secondItem="dSQ-yB-yWq" secondAttribute="trailing" constant="36" id="7eY-RE-vid"/>
+                <constraint firstItem="5aM-gb-reU" firstAttribute="top" secondItem="dSQ-yB-yWq" secondAttribute="bottom" constant="32" id="DMb-9x-IMp"/>
+                <constraint firstItem="xUU-1i-rK6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="F0J-79-dnh"/>
+                <constraint firstItem="9SA-4d-pUX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="JwM-kf-tHH"/>
+                <constraint firstAttribute="trailing" secondItem="9xG-WU-Xur" secondAttribute="trailing" constant="32" id="Kdp-XW-GNe"/>
+                <constraint firstItem="9xG-WU-Xur" firstAttribute="top" secondItem="dHM-9H-int" secondAttribute="bottom" constant="32" id="LHa-Tu-CLO"/>
+                <constraint firstAttribute="trailing" secondItem="xUU-1i-rK6" secondAttribute="trailing" id="Lf8-Po-RAL"/>
+                <constraint firstItem="9SA-4d-pUX" firstAttribute="top" secondItem="xUU-1i-rK6" secondAttribute="bottom" constant="32" id="MtE-da-jmo"/>
+                <constraint firstItem="l8r-tx-z7u" firstAttribute="top" secondItem="5aM-gb-reU" secondAttribute="bottom" constant="64" id="Q02-uE-KKI"/>
+                <constraint firstAttribute="trailing" secondItem="9SA-4d-pUX" secondAttribute="trailing" constant="32" id="Q7q-my-g7K"/>
+                <constraint firstItem="dSQ-yB-yWq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="36" id="ZlX-jX-0Fh"/>
+                <constraint firstItem="dHM-9H-int" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eBY-dI-kWE"/>
+                <constraint firstItem="l8r-tx-z7u" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="64" id="eBq-b4-bVn"/>
+                <constraint firstAttribute="bottom" secondItem="9xG-WU-Xur" secondAttribute="bottom" constant="16" id="gDX-b1-zHn"/>
+                <constraint firstItem="xUU-1i-rK6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="llc-Xy-WwE"/>
+                <constraint firstItem="dSQ-yB-yWq" firstAttribute="top" secondItem="9SA-4d-pUX" secondAttribute="bottom" constant="32" id="ltw-xx-qhe"/>
+                <constraint firstItem="5aM-gb-reU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="n3l-ju-oxX"/>
+                <constraint firstAttribute="trailing" secondItem="l8r-tx-z7u" secondAttribute="trailing" constant="64" id="r5D-iA-u4X"/>
+            </constraints>
+            <point key="canvasLocation" x="31.5" y="53.5"/>
+        </view>
+    </objects>
+</document>
