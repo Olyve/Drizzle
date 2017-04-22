@@ -11,14 +11,14 @@ import UIKit
 // MARK: - Add app colors to UIColor
 extension UIColor {
   static var drizzleWhite: UIColor {
-    return UIColor(red: (229/255), green: (209/255), blue: (219/255), alpha: 1)
+    return UIColor(red: (230/255), green: (224/255), blue: (217/255), alpha: 1)
   }
   
   static var drizzleDarkGray: UIColor {
-    return UIColor(red: (66/255), green: (80/255), blue: (70/255), alpha: 1)
+    return UIColor(red: (77/255), green: (80/255), blue: (89/255), alpha: 1)
   }
   
   static var drizzleGreen: UIColor {
-    return UIColor(red: (159/255), green: (98/255), blue: (151/255), alpha: 1)
+    return UIColor(red: (166/255), green: (161/255), blue: (120/255), alpha: 1)
   }
 }
