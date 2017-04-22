@@ -6,9 +6,9 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
 
-class Location: NSObject {
+class Location {
   var latitude: String
   var longitude: String
   var formattedAddress: String
@@ -20,28 +20,33 @@ class Location: NSObject {
     self.formattedAddress = formattedAddress
   }
   
-  // FIXME: I don't like force unwrapping these even though I know they are strings. Need to fix this.
-  required convenience init?(coder aDecoder: NSCoder)
+  convenience init?(from json: JSON)
   {
-    let latitude = aDecoder.decodeObject(forKey: Location.LatitudeKey) as! String
-    let longitude = aDecoder.decodeObject(forKey: Location.LongitudeKey) as! String
-    let formattedAddress = aDecoder.decodeObject(forKey: Location.AddressKey) as! String
+    guard let latitude = json[Location.LatitudeKey].string,
+          let longitude = json[Location.LongitudeKey].string,
+          let address = json[Location.AddressKey].string
+      else { return nil }
     
-    self.init(latitude: latitude, longitude: longitude, formattedAddress: formattedAddress)
+    self.init(latitude: latitude, longitude: longitude, formattedAddress: address)
   }
 }
 
-// MARK: - NSCoder
-extension Location: NSCoding {
-  func encode(with aCoder: NSCoder)
+// MARK: - JSONable
+extension Location {
+  func toJSON() -> [AnyHashable: Any]
   {
-    aCoder.encode(latitude, forKey: Location.LatitudeKey)
-    aCoder.encode(longitude, forKey: Location.LongitudeKey)
-    aCoder.encode(formattedAddress, forKey: Location.AddressKey)
+    let dictionary: [AnyHashable: Any] = [
+      Location.LatitudeKey: latitude,
+      Location.LongitudeKey: longitude,
+      Location.AddressKey: formattedAddress
+    ]
+    
+    return dictionary
   }
 }
 
 // MARK: - Equatable
+extension Location: Equatable {}
 func ==(lhs: Location, rhs: Location) -> Bool
 {
   return lhs.latitude == rhs.latitude &&
