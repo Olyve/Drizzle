@@ -9,38 +9,29 @@
 @testable import Drizzle
 import Nimble
 import Quick
+import RxTest
 
 class HomeViewModelSpec: QuickSpec {
   override func spec() {
     describe("Home View Model") {
       var subject: HomeViewModel!
-      let userDefaults = UserDefaults(suiteName: "HomeViewModelTests")!
+      var locationManager: LocationManagerType!
+      
+      beforeSuite {
+        locationManager = MockLocationManager()
+        subject = HomeViewModel(locationManager: locationManager)
+      }
       
       describe("init") {
-        context("home location is set") {
-          let location = Location(latitude: "1", longitude: "1", formattedAddress: "some address")
+        it("should bind locationManager.homeLocation to self.homeLocation") {
+          let location = Location(latitude: "56", longitude: "34", formattedAddress: "address here")
+          locationManager.homeLocation.value = location
           
-          beforeEach {
-            let locationData = NSKeyedArchiver.archivedData(withRootObject: location)
-            userDefaults.set(locationData, forKey: "home_location")
-            
-            subject = HomeViewModel(userDefaults: userDefaults)
-          }
+          expect(subject.homeLocation.value).to(equal(location))
           
-          it("should fetch and return the home location") {
-            expect(subject.homeLocation).to(equal(location))
-          }
-        }
-        
-        context("home location is not set") {
-          beforeEach {
-            userDefaults.removeObject(forKey: "home_location")
-            subject = HomeViewModel(userDefaults: userDefaults)
-          }
+          locationManager.homeLocation.value = nil
           
-          it("should return nil") {
-            expect(subject.homeLocation).to(beNil())
-          }
+          expect(subject.homeLocation.value).to(beNil())
         }
       }
       
