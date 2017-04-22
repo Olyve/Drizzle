@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PromiseKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Quick.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,12 +62,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1AA5771100F90F9B6D474396905A8C63</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4478A57B7AC3D6186986D99A922100DE</key>
+		<key>57332D7D1593671F9CB61C4076EC871B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,17 +72,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>768DBB5EBAAA4E27701689B15DC2D49C</key>
+		<key>7409E0F2EA2FB600AE252F9CB13FF225</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8E5B5B089372F252671A9171BF7D110</key>
+		<key>9B80EE8C8F15125326D2120357AE19EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C74C438BC93CF130E58E6FCCF9BF1F1C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DDDBC5F60C5F57CCDA2E1C1D0C37575F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1D4986C9F3394F415E6595B0C17C6BA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

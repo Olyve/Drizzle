@@ -4,6 +4,7 @@ platform :ios, '10.0'
 target 'Drizzle' do
   use_frameworks!
 
+  pod 'PromiseKit'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SwiftyJSON'
