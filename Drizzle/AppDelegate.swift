@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,16 +16,73 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+//    UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+    
     window = UIWindow(frame: UIScreen.main.bounds)
     
     let homeViewController = HomeViewController()
+    
     let navigationController = UINavigationController(rootViewController: homeViewController)
+    navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    navigationController.navigationBar.shadowImage = UIImage()
+    navigationController.navigationBar.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
     
     window?.rootViewController = navigationController
     window?.makeKeyAndVisible()
     
     return true
   }
+  
+//  func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//    let notificationHour: Int = UserDefaults.standard.value(forKey: "notification_hour") as! Int
+//    let notificationMinute: Int = UserDefaults.standard.value(forKey: "notification_minute") as! Int
+//    let comps = Calendar.current.dateComponents([.hour, .minute], from: Date())
+//    
+//    if notificationHour == comps.hour! &&
+//       comps.minute! - notificationMinute <= 5 &&
+//       comps.minute! - notificationMinute >= 0 {
+//      
+//      let message = WeatherViewModel().getWeatherForecast()
+//      
+//      UNUserNotificationCenter.current().getNotificationSettings { notificationSettings in
+//        switch notificationSettings.authorizationStatus {
+//        case .authorized:
+//          NSLog("LOGGING: Scheduled Notification")
+//          self.scheduleLocalNotification(message: message)
+//        case .notDetermined:
+//          fallthrough
+//        case.denied:
+//          NSLog("Error: Application not authorized to display notifications")
+//        }
+//      }
+//      
+//      completionHandler(.newData)
+//    }
+//    else {
+//      completionHandler(.noData)
+//    }
+//    
+//  }
+  
+//  private func scheduleLocalNotification(message: String)
+//  {
+//    UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+//      let request = requests.filter { $0.identifier == "drizzle_daily_forecast" }.first
+//      
+//      let newContent = UNMutableNotificationContent()
+//      newContent.title = request?.content.title ?? "Daily Weather Forecast"
+//      newContent.body = message
+//      
+//      let newRequest = UNNotificationRequest(identifier: "drizzle_daily_forecast",
+//                                             content: newContent,
+//                                             trigger: request?.trigger)
+//      UNUserNotificationCenter.current().add(newRequest) { (error) in
+//        if let error = error {
+//          NSLog("Unable to add notification request (\(error), \(error.localizedDescription))")
+//        }
+//      }
+//    }
+//  }
 
   func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

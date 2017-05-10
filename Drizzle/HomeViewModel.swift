@@ -16,6 +16,7 @@ protocol HomeViewModelType {
   var homeLocation: Variable<Location?> { get }
   var weatherFetched: Bool { get }
   var currentWeather: Variable<JSON?> { get }
+  var dailyWeather: Variable<JSON?> { get }
   
   func getWeatherForHome()
   func getWeatherIcon() -> String
@@ -29,6 +30,7 @@ class HomeViewModel: HomeViewModelType {
   let homeLocation = Variable<Location?>(nil)
   var weatherFetched = false
   var currentWeather = Variable<JSON?>(nil)
+  var dailyWeather = Variable<JSON?>(nil)
   
   fileprivate let disposeBag = DisposeBag()
   fileprivate var apiKey = ""
@@ -51,11 +53,13 @@ class HomeViewModel: HomeViewModelType {
 extension HomeViewModel {
   func getWeatherForHome()
   {
+    weatherFetched = false
     fetchWeatherData()
       .then { data -> Void in
         let json = JSON(data: data)
         
         self.currentWeather.value = json["currently"]
+        self.dailyWeather.value = json["daily"]
         self.weatherFetched = true
       }
       .catch { error in NSLog("\(error)") }
@@ -67,12 +71,17 @@ extension HomeViewModel {
       else { return "clear-day" }
     
     switch(currentWeather["icon"].stringValue) {
-      case "rain":          return "rain"
-      case "snow":          return "snow"
-      case "wind":          return "wind"
-      case "cloudy":        return "cloudy"
-      case "partly-cloudy": return "partly-cloudy"
-      default:              return "clear-day"
+      case "clear-night":         return "clear-night"
+      case "rain":                return "rain"
+      case "snow":                return "snow"
+      case "sleet":               return "sleet"
+      case "wind":                return "wind"
+      case "fog":                 return "fog"
+      case "cloudy":              return "cloudy"
+      case "partly-cloudy-day":   return "partly-cloudy"
+      case "partly-cloudy-night": return "partly-cloudy-night"
+      case "thunderstorm":        return "storm"
+      default:                    return "clear-day"
     }
   }
 }
@@ -97,7 +106,7 @@ private extension HomeViewModel {
     
     let homeString = "\(home.latitude),\(home.longitude)"
     let encodedLocation = homeString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-    let options = "?exlude=[minutely,hourly,flags,alerts]".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+    let options = "?exclude=[minutely,hourly,flags,alerts]".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
     let urlString = "https://api.darksky.net/forecast/\(apiKey)/\(encodedLocation)\(options)"
     
     return networkClient.makeRequest(urlString: urlString)

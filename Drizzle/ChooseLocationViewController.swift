@@ -14,6 +14,7 @@ import UIKit
 
 class ChooseLocationViewController: UIViewController {
   @IBOutlet weak var locationTextField: UITextField!
+  @IBOutlet weak var confirmationLabel: UILabel!
   @IBOutlet weak var addressLabel: UILabel!
   @IBOutlet weak var backButton: UIBarButtonItem!
   @IBOutlet weak var verifyButton: DrizzleBorderButton!
@@ -38,6 +39,7 @@ extension ChooseLocationViewController {
   {
     locationTextField.delegate = self
     
+    handleDisplayingBackButton()
     setBindings()
   }
 }
@@ -58,6 +60,7 @@ extension ChooseLocationViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool
   {
     let address = locationTextField.text ?? ""
+    textField.resignFirstResponder()
     viewModel.getLocationFrom(addressString: address)
     
     return true
@@ -74,13 +77,16 @@ fileprivate extension ChooseLocationViewController {
       .addDisposableTo(disposeBag)
     
     viewModel.apiLocation.asObservable()
-      .map { location in location?.formattedAddress }
-      .bindTo(addressLabel.rx.text)
+      .map { location in location != nil }
+      .bindNext({ locationExists in
+        self.verifyButton.isEnabled = locationExists
+        self.confirmationLabel.isHidden = !locationExists
+      })
       .addDisposableTo(disposeBag)
     
     viewModel.apiLocation.asObservable()
-      .map { location in location != nil }
-      .bindTo(verifyButton.rx.isEnabled)
+      .map { location in location?.formattedAddress }
+      .bindTo(addressLabel.rx.text)
       .addDisposableTo(disposeBag)
     
     viewModel.isLoading
@@ -88,5 +94,17 @@ fileprivate extension ChooseLocationViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
       })
       .addDisposableTo(disposeBag)
+  }
+  
+  func handleDisplayingBackButton()
+  {
+    if viewModel.homeLocation.value == nil {
+      navigationItem.setHidesBackButton(true, animated: true)
+      navigationController?.navigationBar.tintColor = UIColor.drizzleWhite
+    }
+    else {
+      navigationItem.setHidesBackButton(false, animated: false)
+      navigationController?.navigationBar.tintColor = UIColor.drizzleDarkGray
+    }
   }
 }
