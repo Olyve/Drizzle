@@ -36,7 +36,7 @@ class LocationManagerSpec: QuickSpec {
         context("with stored homeLocation") {
           it("should set homeLocation to stored value") {
             let location = Location(latitude: "32", longitude: "44", formattedAddress: "address")
-            userDefaults.set(location.toJSON(), forKey: "home_location")
+            userDefaults.set(location.toJSON().rawString(), forKey: "home_location")
             
             expect(subject.homeLocation.value).to(equal(location))
           }
@@ -45,12 +45,12 @@ class LocationManagerSpec: QuickSpec {
         context("homeLocation changes") {
           it("should update homeLocation automatically") {
             let location = Location(latitude: "32", longitude: "44", formattedAddress: "address")
-            userDefaults.set(location.toJSON(), forKey: "home_location")
+            userDefaults.set(location.toJSON().rawString(), forKey: "home_location")
             
             expect(subject.homeLocation.value).to(equal(location))
             
             let location2 = Location(latitude: "75.999", longitude: "-43.56", formattedAddress: "something here")
-            userDefaults.set(location2.toJSON(), forKey: "home_location")
+            userDefaults.set(location2.toJSON().rawString(), forKey: "home_location")
             
             expect(subject.homeLocation.value).to(equal(location2))
           }

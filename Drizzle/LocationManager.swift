@@ -27,7 +27,7 @@ class LocationManager: LocationManagerType {
   {
     self.userDefaults = userDefaults
     
-    userDefaults.rx.observe([AnyHashable: Any].self, LocationManager.HomeLocationKey).asObservable()
+    userDefaults.rx.observe(String.self, LocationManager.HomeLocationKey).asObservable()
       .map { self.initLocation(from: $0) }
       .bindTo(self.homeLocation)
       .addDisposableTo(disposeBag)
@@ -38,7 +38,7 @@ class LocationManager: LocationManagerType {
 extension LocationManager {
   func setHomeLocation(location: Location)
   {
-    userDefaults.set(location.toJSON(), forKey: LocationManager.HomeLocationKey)
+    userDefaults.set(location.toJSON().rawString(), forKey: LocationManager.HomeLocationKey)
   }
 }
 
@@ -46,14 +46,12 @@ extension LocationManager {
 extension LocationManager {
   static let HomeLocationKey = "home_location"
   
-  func initLocation(from dictionary: [AnyHashable: Any]?) -> Location?
+  func initLocation(from string: String?) -> Location?
   {
-    guard let dict = dictionary
-      else {
-        NSLog("Location data did not exist, returning nil")
-        return nil
-      }
-    let json = JSON(dict)
+    guard let dataString = string
+      else { NSLog("Location data did not exist, returning nil"); return nil }
+    
+    let json = JSON.parse(dataString)
     
     return Location(from: json)
   }
