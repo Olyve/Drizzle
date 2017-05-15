@@ -36,7 +36,7 @@ class CurrentWeather {
 
 // MARK: - JSONable
 extension CurrentWeather {
-  func toJSON() -> [AnyHashable: Any] {
+  func toJSON() -> JSON {
     let dictionary: [AnyHashable: Any] = [
       CurrentWeather.SummaryKey: summary,
       CurrentWeather.IconKey: icon,
@@ -44,7 +44,7 @@ extension CurrentWeather {
       CurrentWeather.ApparentTempKey: apparentTemperature
     ]
     
-    return dictionary
+    return JSON(dictionary)
   }
 }
 
