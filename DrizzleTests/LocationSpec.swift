@@ -16,7 +16,16 @@ class LocationSpec: QuickSpec {
     describe("Location") {
       let dictionary = [ "latitude" : "1", "longitude" : "2", "address" : "some address"]
       
-      it("correctly initializes from JSON") {
+      it("should initialize") {
+        let location = Location(latitude: "lat", longitude: "lng", formattedAddress: "address")
+        
+        expect(location).toNot(beNil())
+        expect(location.latitude).to(equal("lat"))
+        expect(location.longitude).to(equal("lng"))
+        expect(location.formattedAddress).to(equal("address"))
+      }
+      
+      it("should initialize from JSON") {
         let json = JSON(dictionary)
         let subject = Location(from: json)
         
@@ -26,13 +35,22 @@ class LocationSpec: QuickSpec {
         expect(subject?.formattedAddress).to(equal("some address"))
       }
       
-      it("correctly converts to JSON") {
-        let subject = Location(latitude: "245", longitude: "345", formattedAddress: "London")
-        let json = subject.toJSON()
+      it("should be equatable") {
+        let location1 = Location(latitude: "1", longitude: "2", formattedAddress: "some address")
+        let location2 = Location(from: JSON(dictionary))
         
-        expect(json["latitude"] as? String).to(equal("245"))
-        expect(json["longitude"] as? String).to(equal("345"))
-        expect(json["address"] as? String).to(equal("London"))
+        expect(location1).to(equal(location2))
+      }
+      
+      describe("toJSON") {
+        it("correctly converts to JSON") {
+          let subject = Location(latitude: "245", longitude: "345", formattedAddress: "London")
+          let json = subject.toJSON()
+          
+          expect(json["latitude"].stringValue).to(equal("245"))
+          expect(json["longitude"].stringValue).to(equal("345"))
+          expect(json["address"].stringValue).to(equal("London"))
+        } 
       }
     }
   }

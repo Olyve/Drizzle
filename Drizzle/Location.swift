@@ -33,15 +33,15 @@ class Location {
 
 // MARK: - JSONable
 extension Location {
-  func toJSON() -> [AnyHashable: Any]
+  func toJSON() -> JSON
   {
-    let dictionary: [AnyHashable: Any] = [
+    let json: JSON = [
       Location.LatitudeKey: latitude,
       Location.LongitudeKey: longitude,
       Location.AddressKey: formattedAddress
     ]
     
-    return dictionary
+    return json
   }
 }
 
