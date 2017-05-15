@@ -39,7 +39,7 @@ extension SettingsViewController {
     super.viewWillAppear(animated)
     
     navigationController?.navigationBar.barStyle = .black
-    navigationController?.navigationBar.tintColor = UIColor.drizzleWhite
+    navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.drizzleWhite]
     
     navigationItem.title = "Drizzle"
     

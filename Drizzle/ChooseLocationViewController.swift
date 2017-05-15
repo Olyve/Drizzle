@@ -16,10 +16,13 @@ class ChooseLocationViewController: UIViewController {
   @IBOutlet weak var locationTextField: UITextField!
   @IBOutlet weak var confirmationLabel: UILabel!
   @IBOutlet weak var addressLabel: UILabel!
-  @IBOutlet weak var backButton: UIBarButtonItem!
   @IBOutlet weak var verifyButton: DrizzleBorderButton!
   
   fileprivate let disposeBag = DisposeBag()
+  fileprivate let backButton = UIBarButtonItem(title: "Back",
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(backTapped))
   
   fileprivate let viewModel: ChooseLocationViewModelType
   
@@ -46,7 +49,7 @@ extension ChooseLocationViewController {
 
 // MARK: - IBActions
 extension ChooseLocationViewController: UITextFieldDelegate {
-  @IBAction func backTapped()
+  @objc func backTapped()
   {
     navigationController?.popViewController(animated: true)
   }
@@ -100,11 +103,11 @@ fileprivate extension ChooseLocationViewController {
   {
     if viewModel.homeLocation.value == nil {
       navigationItem.setHidesBackButton(true, animated: true)
-      navigationController?.navigationBar.tintColor = UIColor.drizzleWhite
+      navigationController?.navigationBar.tintColor = UIColor.drizzleDarkGray
     }
     else {
       navigationItem.setHidesBackButton(false, animated: false)
-      navigationController?.navigationBar.tintColor = UIColor.drizzleDarkGray
+      navigationController?.navigationBar.tintColor = UIColor.drizzleWhite
     }
   }
 }
