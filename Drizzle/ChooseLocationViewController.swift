@@ -42,6 +42,14 @@ extension ChooseLocationViewController {
   {
     locationTextField.delegate = self
     
+    navigationController?.navigationBar.barStyle = .black
+    navigationController?.navigationBar.titleTextAttributes = [
+      NSForegroundColorAttributeName: UIColor.drizzleWhite,
+      NSFontAttributeName: UIFont(name: "Quicksand-Regular", size: 20)!
+    ]
+    
+    navigationItem.title = "Set Home Location"
+    
     handleDisplayingBackButton()
     setBindings()
   }
