@@ -39,9 +39,12 @@ extension SettingsViewController {
     super.viewWillAppear(animated)
     
     navigationController?.navigationBar.barStyle = .black
-    navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.drizzleWhite]
+    navigationController?.navigationBar.titleTextAttributes = [
+      NSForegroundColorAttributeName: UIColor.drizzleWhite,
+      NSFontAttributeName: UIFont(name: "Quicksand-Regular", size: 20)!
+    ]
     
-    navigationItem.title = "Drizzle"
+    navigationItem.title = "Settings"
     
     alarmPicker.setValue(UIColor.drizzleWhite, forKey: "textColor")
     alarmPicker.datePickerMode = .dateAndTime
