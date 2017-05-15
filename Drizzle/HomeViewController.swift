@@ -23,14 +23,17 @@ class HomeViewController: UIViewController {
   @IBOutlet weak var windSpeedLabel: UILabel!
   
   fileprivate let viewModel: HomeViewModelType
+  fileprivate let weatherManager: WeatherManagerType
   
   fileprivate let disposeBag = DisposeBag()
   fileprivate var settingsButton: UIBarButtonItem!
   fileprivate var homeLocationButton: UIBarButtonItem!
   
-  init(viewModel: HomeViewModelType = HomeViewModel())
+  init(viewModel: HomeViewModelType = HomeViewModel(),
+       weatherManager: WeatherManagerType = WeatherManager())
   {
     self.viewModel = viewModel
+    self.weatherManager = weatherManager
     
     super.init(nibName: "HomeViewController", bundle: nil)
     
@@ -90,7 +93,7 @@ fileprivate extension HomeViewController {
       .subscribe(onNext: { location in
         if let location = location {
           self.addressLabel.text = location.formattedAddress
-          self.viewModel.getWeatherForHome()
+          self.weatherManager.getWeatherForHome()
         }
       })
       .addDisposableTo(disposeBag)
@@ -100,14 +103,14 @@ fileprivate extension HomeViewController {
   
   func setWeatherBindings()
   {
-    viewModel.currentWeather.asObservable()
+    weatherManager.currentWeather.asObservable()
       .subscribe(onNext: { json in
         if let json = json {
           self.summaryLabel.text = json["summary"].stringValue
           self.temperatureLabel.text = String(json["temperature"].intValue) + "°F"
           self.apparentTemperatureLabel.text = String(json["apparentTemperature"].intValue) + "°F"
           
-          let icon = self.viewModel.getWeatherIcon()
+          let icon = self.weatherManager.getWeatherIcon()
           self.weatherIcon.image = UIImage(named: icon) ?? UIImage(named: "clear-day")
         }
         else {
@@ -119,7 +122,7 @@ fileprivate extension HomeViewController {
       })
       .addDisposableTo(disposeBag)
     
-    viewModel.dailyWeather.asObservable()
+    weatherManager.dailyWeather.asObservable()
       .subscribe(onNext: { json in
         guard let json = json
           else { return NSLog("Error: Unable to parse daily weather data.") }
@@ -156,6 +159,6 @@ fileprivate extension HomeViewController {
   
   func fetchWeather()
   {
-    viewModel.getWeatherForHome()
+    weatherManager.getWeatherForHome()
   }
 }

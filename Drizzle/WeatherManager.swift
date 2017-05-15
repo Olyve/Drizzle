@@ -1,5 +1,5 @@
 //
-//  WeatherViewModel.swift
+//  WeatherManager.swift
 //  Drizzle
 //
 //  Created by Sam Galizia on 5/9/17.
@@ -11,11 +11,25 @@ import RxSwift
 import RxCocoa
 import SwiftyJSON
 
-protocol WeatherViewModelType {
+protocol WeatherManagerType {
+  var weatherFetched: Bool { get }
+  var currentWeather: Variable<JSON?> { get }
+  var dailyWeather: Variable<JSON?> { get }
+  
   func getWeatherForecast() -> String
+  func getWeatherForHome()
+  func getWeatherIcon() -> String
 }
 
-class WeatherViewModel: WeatherViewModelType {
+class WeatherManager: WeatherManagerType {
+  enum Errors: Error {
+    case weatherFetched
+  }
+  
+  var weatherFetched = false
+  var currentWeather = Variable<JSON?>(nil)
+  var dailyWeather = Variable<JSON?>(nil)
+  
   fileprivate var apiKey = ""
   fileprivate var homeLocation: Location?
   
@@ -34,7 +48,7 @@ class WeatherViewModel: WeatherViewModelType {
 }
 
 // MARK: - Interface
-extension WeatherViewModel {
+extension WeatherManager {
   func getWeatherForecast() -> String
   {
     var message = ""
@@ -54,10 +68,44 @@ extension WeatherViewModel {
     
     return message
   }
+  
+  func getWeatherIcon() -> String
+  {
+    guard let currentWeather = currentWeather.value
+      else { return "clear-day" }
+    
+    switch(currentWeather["icon"].stringValue) {
+    case "clear-night":         return "clear-night"
+    case "rain":                return "rain"
+    case "snow":                return "snow"
+    case "sleet":               return "sleet"
+    case "wind":                return "wind"
+    case "fog":                 return "fog"
+    case "cloudy":              return "cloudy"
+    case "partly-cloudy-day":   return "partly-cloudy"
+    case "partly-cloudy-night": return "partly-cloudy-night"
+    case "thunderstorm":        return "storm"
+    default:                    return "clear-day"
+    }
+  }
+  
+  func getWeatherForHome()
+  {
+    weatherFetched = false
+    fetchWeatherData()
+      .then { data -> Void in
+        let json = JSON(data: data)
+        
+        self.currentWeather.value = json["currently"]
+        self.dailyWeather.value = json["daily"]
+        self.weatherFetched = true
+      }
+      .catch { error in NSLog("\(error)") }
+  }
 }
 
 // MARK: - Helpers
-fileprivate extension WeatherViewModel {
+fileprivate extension WeatherManager {
   func getAPIKey()
   {
     guard let file = Bundle.main.url(forResource: "config", withExtension: "json"),

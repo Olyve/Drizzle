@@ -18,11 +18,11 @@ class SettingsViewController: UIViewController {
     //setNotificationTimeAndHandleAuthorization()
   }
   
-  fileprivate let weatherViewModel: WeatherViewModelType
+  fileprivate let weatherManager: WeatherManagerType
   
-  init(weatherViewModel: WeatherViewModelType = WeatherViewModel())
+  init(weatherManager: WeatherManagerType = WeatherManager())
   {
-    self.weatherViewModel = weatherViewModel
+    self.weatherManager = weatherManager
     
     super.init(nibName: "SettingsViewController", bundle: nil)
   }
