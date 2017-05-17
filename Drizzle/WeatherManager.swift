@@ -109,8 +109,8 @@ fileprivate extension WeatherManager {
   func getAPIKey()
   {
     guard let file = Bundle.main.url(forResource: "config", withExtension: "json"),
-      let data = try? Data(contentsOf: file)
-      else { NSLog("Error parsing Data from config file"); return }
+          let data = try? Data(contentsOf: file)
+      else { return log.error("Error parsing contents of config file!") }
     
     let json = JSON(data: data)
     apiKey = json["api_key"].stringValue

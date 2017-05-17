@@ -49,7 +49,7 @@ extension LocationManager {
   func initLocation(from string: String?) -> Location?
   {
     guard let dataString = string
-      else { NSLog("Location data did not exist, returning nil"); return nil }
+      else { log.warning("Location data did not exist, returning nil"); return nil }
     
     let json = JSON.parse(dataString)
     

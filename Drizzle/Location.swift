@@ -25,7 +25,7 @@ class Location {
     guard let latitude = json[Location.LatitudeKey].string,
           let longitude = json[Location.LongitudeKey].string,
           let address = json[Location.AddressKey].string
-      else { return nil }
+      else { log.warning("Failed to parse Location from JSON data"); return nil }
     
     self.init(latitude: latitude, longitude: longitude, formattedAddress: address)
   }

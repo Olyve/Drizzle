@@ -28,7 +28,7 @@ class CurrentWeather {
           let icon = json[CurrentWeather.IconKey].string,
           let temperature = json[CurrentWeather.TemperatureKey].string,
           let apparentTemperature = json[CurrentWeather.ApparentTempKey].string
-      else { return nil }
+      else { log.warning("Failed to parse CurrentWeather from JSON"); return nil }
     
     self.init(summary: summary, icon: icon, temperature: temperature, apparentTemperature: apparentTemperature)
   }
