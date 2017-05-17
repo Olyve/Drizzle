@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-class CurrentWeather {
+class CurrentWeather: JSONConvertable {
   var summary: String
   var icon: String
   var temperature: String
@@ -22,7 +22,7 @@ class CurrentWeather {
     self.apparentTemperature = apparentTemperature
   }
   
-  convenience init?(from json: JSON)
+  convenience required init?(from json: JSON)
   {
     guard let summary = json[CurrentWeather.SummaryKey].string,
           let icon = json[CurrentWeather.IconKey].string,

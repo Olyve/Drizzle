@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-class Location {
+class Location: JSONConvertable {
   var latitude: String
   var longitude: String
   var formattedAddress: String
@@ -20,7 +20,7 @@ class Location {
     self.formattedAddress = formattedAddress
   }
   
-  convenience init?(from json: JSON)
+  convenience required init?(from json: JSON)
   {
     guard let latitude = json[Location.LatitudeKey].string,
           let longitude = json[Location.LongitudeKey].string,
