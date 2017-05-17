@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftyBeaver.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,7 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57332D7D1593671F9CB61C4076EC871B</key>
+		<key>2A214AF6194D370D4B79E9D94D80F1EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>41A3EB25551603B35698A12C23EEB735</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,12 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7409E0F2EA2FB600AE252F9CB13FF225</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9B80EE8C8F15125326D2120357AE19EB</key>
+		<key>844C59A099C00972AD5C5291937F8E77</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +92,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DDDBC5F60C5F57CCDA2E1C1D0C37575F</key>
+		<key>D9252CEF4E9353B380CD0D45E9915CD0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E1D4986C9F3394F415E6595B0C17C6BA</key>
+		<key>DF2835F82D6146C5F87A6B588124F726</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -103,6 +108,11 @@
 			<true/>
 		</dict>
 		<key>F4BCA8E2B8B39CE0F5823251651F4FF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF4EC4E20A783840FAB8234515B62E87</key>
 		<dict>
 			<key>primary</key>
 			<true/>

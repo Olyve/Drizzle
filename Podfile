@@ -7,6 +7,7 @@ target 'Drizzle' do
   pod 'PromiseKit'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'SwiftyBeaver'
   pod 'SwiftyJSON'
 
   target 'DrizzleTests' do
