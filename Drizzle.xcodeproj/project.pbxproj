@@ -26,6 +26,7 @@
 		228DAD551E9EADF80019F867 /* ChooseLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228DAD531E9EADF80019F867 /* ChooseLocationViewController.xib */; };
 		228DAD571E9EBC720019F867 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DAD561E9EBC720019F867 /* Buttons.swift */; };
 		22B00BDB1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00BDA1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift */; };
+		22B00BDF1ECA61A700B8BB46 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */; };
 		22B0A4CF1EC213ED0024A34F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4CD1EC213ED0024A34F /* SettingsViewController.swift */; };
 		22B0A4D01EC213ED0024A34F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */; };
 		22B0A4D21EC243A70024A34F /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4D11EC243A70024A34F /* WeatherManager.swift */; };
@@ -73,6 +74,7 @@
 		228DAD531E9EADF80019F867 /* ChooseLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseLocationViewController.xib; sourceTree = "<group>"; };
 		228DAD561E9EBC720019F867 /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		22B00BDA1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherSpec.swift; sourceTree = "<group>"; };
+		22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		22B0A4CD1EC213ED0024A34F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		22B0A4D11EC243A70024A34F /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		2250DFB51EA533CC00F8FC0A /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B00BDF1ECA61A700B8BB46 /* MockLocationManager.swift in Sources */,
 				228DAD471E9D8AE10019F867 /* LocationSpec.swift in Sources */,
 				22B00BDB1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift in Sources */,
 				2250DFB11EA52B0400F8FC0A /* LocationManagerSpec.swift in Sources */,
