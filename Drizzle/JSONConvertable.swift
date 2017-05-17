@@ -9,8 +9,6 @@
 import SwiftyJSON
 
 protocol JSONConvertable {
-  typealias conformer = Self
-  
   func toJSON() -> JSON
   init?(from json: JSON)
 }
