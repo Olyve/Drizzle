@@ -31,6 +31,7 @@
 		22B0A4D01EC213ED0024A34F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */; };
 		22B0A4D21EC243A70024A34F /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4D11EC243A70024A34F /* WeatherManager.swift */; };
 		22B0A4D41EC243F70024A34F /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4D31EC243F70024A34F /* CurrentWeather.swift */; };
+		22C7F0151ECCDE1200A5CD91 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */; };
 		22C7F0191ECCE24200A5CD91 /* JSONConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C7F0181ECCE24200A5CD91 /* JSONConvertable.swift */; };
 		22D4F3211E9D4E6200AF8F7F /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */; };
 		22D4F3221E9D4E6200AF8F7F /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */; };
@@ -80,6 +81,7 @@
 		22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		22B0A4D11EC243A70024A34F /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		22B0A4D31EC243F70024A34F /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CurrentWeather.json; sourceTree = "<group>"; };
 		22C7F0181ECCE24200A5CD91 /* JSONConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConvertable.swift; sourceTree = "<group>"; };
 		22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				2250DFB01EA52B0400F8FC0A /* LocationManagerSpec.swift */,
+				22C7F0131ECCDDF900A5CD91 /* JSON */,
 				2250DFB51EA533CC00F8FC0A /* Mocks */,
 				2250DFB31EA5339A00F8FC0A /* Models */,
 				228DAD481E9D8B9B0019F867 /* Resources */,
@@ -244,6 +247,14 @@
 				22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		22C7F0131ECCDDF900A5CD91 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */,
+			);
+			name = JSON;
 			sourceTree = "<group>";
 		};
 		C2BC2D076007E13E495C95B2 /* Pods */ = {
@@ -382,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22C7F0151ECCDE1200A5CD91 /* CurrentWeather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
