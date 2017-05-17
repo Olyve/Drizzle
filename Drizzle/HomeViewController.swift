@@ -115,9 +115,9 @@ fileprivate extension HomeViewController {
         }
         else {
           guard let json = json
-            else { return NSLog("Error: Unable to get current weather data.") }
+            else { return log.warning("Error: Unable to get current weather data.") }
           
-          NSLog("Error: Unable to get current weather from JSON: \(json)")
+          log.warning("Error: Unable to get current weather from JSON: \(json)")
         }
       })
       .addDisposableTo(disposeBag)
