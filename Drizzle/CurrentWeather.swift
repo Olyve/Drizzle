@@ -34,7 +34,7 @@ class CurrentWeather: JSONConvertable {
   }
 }
 
-// MARK: - JSONable
+// MARK: - JSONConvertable
 extension CurrentWeather {
   func toJSON() -> JSON {
     let dictionary: [AnyHashable: Any] = [
@@ -46,6 +46,16 @@ extension CurrentWeather {
     
     return JSON(dictionary)
   }
+}
+
+// MARK: - Equatable
+extension CurrentWeather: Equatable {}
+func ==(lhs: CurrentWeather, rhs: CurrentWeather) -> Bool
+{
+  return lhs.summary == rhs.summary &&
+         lhs.icon == rhs.icon &&
+         lhs.temperature == rhs.temperature &&
+         lhs.apparentTemperature == rhs.apparentTemperature
 }
 
 // MARK: - Helpers

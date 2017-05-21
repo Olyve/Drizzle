@@ -13,43 +13,56 @@ import SwiftyJSON
 
 class LocationSpec: QuickSpec {
   override func spec() {
+    let currentWeather = CurrentWeather.fromJSONFile()
+    
     describe("Location") {
-      let dictionary = [ "latitude" : "1", "longitude" : "2", "address" : "some address"]
-      
       it("should initialize") {
-        let location = Location(latitude: "lat", longitude: "lng", formattedAddress: "address")
+        let location = Location(latitude: "lat",
+                                longitude: "lng",
+                                formattedAddress: "address",
+                                lastFetchTime: 1234,
+                                currentWeather: currentWeather)
         
         expect(location).toNot(beNil())
         expect(location.latitude).to(equal("lat"))
         expect(location.longitude).to(equal("lng"))
         expect(location.formattedAddress).to(equal("address"))
+        expect(location.lastFetchTime).to(equal(1234))
+        expect(location.currentWeather).to(equal(currentWeather))
       }
       
       it("should initialize from JSON") {
-        let json = JSON(dictionary)
-        let subject = Location(from: json)
+        let subject = Location.fromJSONFile()
         
         expect(subject).toNot(beNil())
-        expect(subject?.latitude).to(equal("1"))
-        expect(subject?.longitude).to(equal("2"))
-        expect(subject?.formattedAddress).to(equal("some address"))
+        expect(subject?.latitude).to(equal("74"))
+        expect(subject?.longitude).to(equal("34"))
+        expect(subject?.formattedAddress).to(equal("New York, NY"))
+        expect(subject?.lastFetchTime).to(equal(12345678))
+        expect(subject?.currentWeather).to(equal(currentWeather))
       }
       
       it("should be equatable") {
-        let location1 = Location(latitude: "1", longitude: "2", formattedAddress: "some address")
-        let location2 = Location(from: JSON(dictionary))
+        let location1 = Location(latitude: "74",
+                                 longitude: "34",
+                                 formattedAddress: "New York, NY",
+                                 lastFetchTime: 12345678,
+                                 currentWeather: currentWeather)
+        let location2 = Location.fromJSONFile()
         
         expect(location1).to(equal(location2))
       }
       
       describe("toJSON") {
         it("correctly converts to JSON") {
-          let subject = Location(latitude: "245", longitude: "345", formattedAddress: "London")
-          let json = subject.toJSON()
+          let subject = Location.fromJSONFile()
+          let json = subject!.toJSON()
           
-          expect(json["latitude"].stringValue).to(equal("245"))
-          expect(json["longitude"].stringValue).to(equal("345"))
-          expect(json["address"].stringValue).to(equal("London"))
+          expect(json["latitude"].stringValue).to(equal("74"))
+          expect(json["longitude"].stringValue).to(equal("34"))
+          expect(json["address"].stringValue).to(equal("New York, NY"))
+          expect(json["last_fetch"].intValue).to(equal(12345678))
+          expect(json["current_weather"]).to(equal(currentWeather?.toJSON()))
         } 
       }
     }

@@ -44,6 +44,16 @@ class CurrentWeatherSpec: QuickSpec {
         expect(weather?.apparentTemperature).to(equal("40"))
       }
       
+      it("should be equatable")
+      {
+        let currentWeather1 = CurrentWeather.fromJSONFile()
+        let currentWeather2 = CurrentWeather(summary: "clear",
+                                             icon: "clear-day",
+                                             temperature: "80",
+                                             apparentTemperature: "85")
+        expect(currentWeather1).to(equal(currentWeather2))
+      }
+      
       describe("toJSON") {
         it("should convert it to JSON") {
           let weather = CurrentWeather(summary: "Partly Cloudy",

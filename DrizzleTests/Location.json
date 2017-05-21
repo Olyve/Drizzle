@@ -1,0 +1,12 @@
+{
+  "latitude": "74",
+  "longitude": "34",
+  "address": "New York, NY",
+  "last_fetch": 12345678,
+  "current_weather": {
+    "summary": "clear",
+    "icon": "clear-day",
+    "temperature": "80",
+    "apparent_temp": "85"
+  }
+}

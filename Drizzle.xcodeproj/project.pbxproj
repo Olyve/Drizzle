@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22054A865BC2F6957B698EDF /* Pods_DrizzleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE1B03B33B0640E3550DA8F /* Pods_DrizzleTests.framework */; };
+		220D11B81ED20B8500BDBF1A /* Location.json in Resources */ = {isa = PBXBuildFile; fileRef = 220D11B71ED20B8500BDBF1A /* Location.json */; };
 		221CD1021E9D47B100D01826 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221CD1011E9D47B100D01826 /* HomeViewController.xib */; };
 		2250DFAD1EA0008C00F8FC0A /* ChooseLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFAC1EA0008C00F8FC0A /* ChooseLocationViewModel.swift */; };
 		2250DFAF1EA00B7500F8FC0A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220D11B71ED20B8500BDBF1A /* Location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Location.json; sourceTree = "<group>"; };
 		221CD1011E9D47B100D01826 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		2250DFAC1EA0008C00F8FC0A /* ChooseLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewModel.swift; sourceTree = "<group>"; };
 		2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */,
+				220D11B71ED20B8500BDBF1A /* Location.json */,
 			);
 			name = JSON;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220D11B81ED20B8500BDBF1A /* Location.json in Resources */,
 				22C7F0151ECCDE1200A5CD91 /* CurrentWeather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
