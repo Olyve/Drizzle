@@ -187,14 +187,14 @@
 				228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */,
 				228DAD561E9EBC720019F867 /* Buttons.swift */,
 				228DAD4F1E9E92400019F867 /* ColorUtilities.swift */,
+				22C7F0181ECCE24200A5CD91 /* JSONConvertable.swift */,
 				2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */,
+				2250DFB81EA5638E00F8FC0A /* NetworkClient.swift */,
 				22B0A4D11EC243A70024A34F /* WeatherManager.swift */,
 				2250DFB21EA52B2500F8FC0A /* Models */,
 				228A2A601E9D40A800D991E5 /* Resources */,
 				228DAD511E9EADCF0019F867 /* View Controllers */,
 				2250DFAB1EA0006B00F8FC0A /* View Models */,
-				2250DFB81EA5638E00F8FC0A /* NetworkClient.swift */,
-				22C7F0181ECCE24200A5CD91 /* JSONConvertable.swift */,
 			);
 			path = Drizzle;
 			sourceTree = "<group>";
