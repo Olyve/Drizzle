@@ -14,18 +14,21 @@ class Location: JSONConvertable {
   var formattedAddress: String
   var lastFetchTime: Int?
   var currentWeather: CurrentWeather?
+  var dailyWeather: DailyWeather?
   
   init(latitude: Double,
        longitude: Double,
        formattedAddress: String,
        lastFetchTime: Int? = nil,
-       currentWeather: CurrentWeather? = nil)
+       currentWeather: CurrentWeather? = nil,
+       dailyWeather: DailyWeather? = nil)
   {
     self.latitude = latitude
     self.longitude = longitude
     self.formattedAddress = formattedAddress
     self.lastFetchTime = lastFetchTime
     self.currentWeather = currentWeather
+    self.dailyWeather = dailyWeather
   }
   
   convenience required init?(from json: JSON)
@@ -33,15 +36,20 @@ class Location: JSONConvertable {
     guard let latitude = json[Location.LatitudeKey].double,
           let longitude = json[Location.LongitudeKey].double,
           let address = json[Location.AddressKey].string,
-          let lastFetchTime = json[Location.LastFetchKey].int,
-          let currentWeather = CurrentWeather(from: json[Location.CurrentWeatherKey])
+          let lastFetchTime = json[Location.LastFetchKey].int
       else { log.warning("Failed to parse Location from JSON data"); return nil }
+    
+    // Because these can be nil, they need to be left out of the guard statement or it will
+    // return a nil Location when we really have a location with no weather data.
+    let currentWeather = CurrentWeather(from: json[Location.CurrentWeatherKey])
+    let dailyWeather = DailyWeather(from: json[Location.DailyWeatherKey])
     
     self.init(latitude: latitude,
               longitude: longitude,
               formattedAddress: address,
               lastFetchTime: lastFetchTime,
-              currentWeather: currentWeather)
+              currentWeather: currentWeather,
+              dailyWeather: dailyWeather)
   }
 }
 
@@ -54,7 +62,8 @@ extension Location {
       Location.LongitudeKey: longitude,
       Location.AddressKey: formattedAddress,
       Location.LastFetchKey: lastFetchTime ?? 0,
-      Location.CurrentWeatherKey: currentWeather?.toJSON() ?? ""
+      Location.CurrentWeatherKey: currentWeather?.toJSON() ?? "",
+      Location.DailyWeatherKey: dailyWeather?.toJSON() ?? ""
     ]
     
     return json
@@ -69,7 +78,8 @@ func ==(lhs: Location, rhs: Location) -> Bool
          lhs.longitude == rhs.longitude &&
          lhs.formattedAddress == rhs.formattedAddress &&
          lhs.lastFetchTime == rhs.lastFetchTime &&
-         lhs.currentWeather == rhs.currentWeather
+         lhs.currentWeather == rhs.currentWeather &&
+         lhs.dailyWeather == rhs.dailyWeather
 }
 
 // MARK: - Helpers
@@ -79,4 +89,5 @@ fileprivate extension Location {
   static let AddressKey = "address"
   static let LastFetchKey = "last_fetch"
   static let CurrentWeatherKey = "current_weather"
+  static let DailyWeatherKey = "daily_weather"
 }
