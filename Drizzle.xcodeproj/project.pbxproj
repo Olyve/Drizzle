@@ -30,7 +30,6 @@
 		22B00BDF1ECA61A700B8BB46 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */; };
 		22B0A4CF1EC213ED0024A34F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4CD1EC213ED0024A34F /* SettingsViewController.swift */; };
 		22B0A4D01EC213ED0024A34F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */; };
-		22B0A4D21EC243A70024A34F /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4D11EC243A70024A34F /* WeatherManager.swift */; };
 		22B0A4D41EC243F70024A34F /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4D31EC243F70024A34F /* CurrentWeather.swift */; };
 		22C7F0151ECCDE1200A5CD91 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */; };
 		22C7F0171ECCDEE200A5CD91 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C7F0161ECCDEE200A5CD91 /* Utilities.swift */; };
@@ -82,7 +81,6 @@
 		22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		22B0A4CD1EC213ED0024A34F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		22B0A4D11EC243A70024A34F /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		22B0A4D31EC243F70024A34F /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CurrentWeather.json; sourceTree = "<group>"; };
 		22C7F0161ECCDEE200A5CD91 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				22C7F0181ECCE24200A5CD91 /* JSONConvertable.swift */,
 				2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */,
 				2250DFB81EA5638E00F8FC0A /* NetworkClient.swift */,
-				22B0A4D11EC243A70024A34F /* WeatherManager.swift */,
 				2250DFB21EA52B2500F8FC0A /* Models */,
 				228A2A601E9D40A800D991E5 /* Resources */,
 				228DAD511E9EADCF0019F867 /* View Controllers */,
@@ -505,7 +502,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				228DAD571E9EBC720019F867 /* Buttons.swift in Sources */,
-				22B0A4D21EC243A70024A34F /* WeatherManager.swift in Sources */,
 				22B0A4D41EC243F70024A34F /* CurrentWeather.swift in Sources */,
 				2250DFB91EA5638E00F8FC0A /* NetworkClient.swift in Sources */,
 				22B0A4CF1EC213ED0024A34F /* SettingsViewController.swift in Sources */,
