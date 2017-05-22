@@ -17,34 +17,34 @@ class LocationSpec: QuickSpec {
     
     describe("Location") {
       it("should initialize") {
-        let location = Location(latitude: "lat",
-                                longitude: "lng",
+        let location = Location(latitude: 45,
+                                longitude: 76,
                                 formattedAddress: "address",
                                 lastFetchTime: 1234,
                                 currentWeather: currentWeather)
         
         expect(location).toNot(beNil())
-        expect(location.latitude).to(equal("lat"))
-        expect(location.longitude).to(equal("lng"))
+        expect(location.latitude).to(equal(45))
+        expect(location.longitude).to(equal(76))
         expect(location.formattedAddress).to(equal("address"))
         expect(location.lastFetchTime).to(equal(1234))
         expect(location.currentWeather).to(equal(currentWeather))
       }
       
       it("should initialize from JSON") {
-        let subject = Location.fromJSONFile()
+        let subject = Location.fromJSONFile()!
         
         expect(subject).toNot(beNil())
-        expect(subject?.latitude).to(equal("74"))
-        expect(subject?.longitude).to(equal("34"))
-        expect(subject?.formattedAddress).to(equal("New York, NY"))
-        expect(subject?.lastFetchTime).to(equal(12345678))
-        expect(subject?.currentWeather).to(equal(currentWeather))
+        expect(subject.latitude).to(equal(74))
+        expect(subject.longitude).to(equal(34))
+        expect(subject.formattedAddress).to(equal("New York, NY"))
+        expect(subject.lastFetchTime).to(equal(12345678))
+        expect(subject.currentWeather).to(equal(currentWeather))
       }
       
       it("should be equatable") {
-        let location1 = Location(latitude: "74",
-                                 longitude: "34",
+        let location1 = Location(latitude: 74,
+                                 longitude: 34,
                                  formattedAddress: "New York, NY",
                                  lastFetchTime: 12345678,
                                  currentWeather: currentWeather)
@@ -58,8 +58,8 @@ class LocationSpec: QuickSpec {
           let subject = Location.fromJSONFile()
           let json = subject!.toJSON()
           
-          expect(json["latitude"].stringValue).to(equal("74"))
-          expect(json["longitude"].stringValue).to(equal("34"))
+          expect(json["latitude"].doubleValue).to(equal(74))
+          expect(json["longitude"].doubleValue).to(equal(34))
           expect(json["address"].stringValue).to(equal("New York, NY"))
           expect(json["last_fetch"].intValue).to(equal(12345678))
           expect(json["current_weather"]).to(equal(currentWeather?.toJSON()))

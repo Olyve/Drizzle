@@ -9,14 +9,14 @@
 import SwiftyJSON
 
 class Location: JSONConvertable {
-  var latitude: String
-  var longitude: String
+  var latitude: Double
+  var longitude: Double
   var formattedAddress: String
   var lastFetchTime: Int?
   var currentWeather: CurrentWeather?
   
-  init(latitude: String,
-       longitude: String,
+  init(latitude: Double,
+       longitude: Double,
        formattedAddress: String,
        lastFetchTime: Int? = nil,
        currentWeather: CurrentWeather? = nil)
@@ -30,8 +30,8 @@ class Location: JSONConvertable {
   
   convenience required init?(from json: JSON)
   {
-    guard let latitude = json[Location.LatitudeKey].string,
-          let longitude = json[Location.LongitudeKey].string,
+    guard let latitude = json[Location.LatitudeKey].double,
+          let longitude = json[Location.LongitudeKey].double,
           let address = json[Location.AddressKey].string,
           let lastFetchTime = json[Location.LastFetchKey].int,
           let currentWeather = CurrentWeather(from: json[Location.CurrentWeatherKey])
