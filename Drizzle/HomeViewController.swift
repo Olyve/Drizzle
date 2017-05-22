@@ -23,17 +23,14 @@ class HomeViewController: UIViewController {
   @IBOutlet weak var windSpeedLabel: UILabel!
   
   fileprivate let viewModel: HomeViewModelType
-  fileprivate let weatherManager: WeatherManagerType
   
   fileprivate let disposeBag = DisposeBag()
   fileprivate var settingsButton: UIBarButtonItem!
   fileprivate var homeLocationButton: UIBarButtonItem!
   
-  init(viewModel: HomeViewModelType = HomeViewModel(),
-       weatherManager: WeatherManagerType = WeatherManager())
+  init(viewModel: HomeViewModelType = HomeViewModel())
   {
     self.viewModel = viewModel
-    self.weatherManager = weatherManager
     
     super.init(nibName: "HomeViewController", bundle: nil)
     
@@ -69,8 +66,9 @@ extension HomeViewController {
   {
     super.viewWillAppear(animated)
     
-    fetchWeather()
     navigationController?.navigationBar.barStyle = .black
+    
+//    viewModel.getWeatherForHome()
   }
   
   override func viewWillDisappear(_ animated: Bool)
@@ -93,7 +91,7 @@ fileprivate extension HomeViewController {
       .subscribe(onNext: { location in
         if let location = location {
           self.addressLabel.text = location.formattedAddress
-          self.weatherManager.getWeatherForHome()
+          self.viewModel.getWeatherForHome()
         }
       })
       .addDisposableTo(disposeBag)
@@ -103,39 +101,35 @@ fileprivate extension HomeViewController {
   
   func setWeatherBindings()
   {
-    weatherManager.currentWeather.asObservable()
-      .subscribe(onNext: { json in
-        if let json = json {
-          self.summaryLabel.text = json["summary"].stringValue
-          self.temperatureLabel.text = String(json["temperature"].intValue) + "°F"
-          self.apparentTemperatureLabel.text = String(json["apparentTemperature"].intValue) + "°F"
-          
-          let icon = self.weatherManager.getWeatherIcon()
-          self.weatherIcon.image = UIImage(named: icon) ?? UIImage(named: "clear-day")
+    // Current Weather
+    viewModel.homeLocation.asObservable()
+      .subscribe(onNext: { [weak self] location in
+        if let location = location, let currentWeather = location.currentWeather, let dailyWeather = location.dailyWeather {
+          self?.bindCurrentWeather(with: currentWeather)
+          self?.bindDailyWeather(with: dailyWeather)
         }
         else {
-          guard let json = json
-            else { return log.warning("Error: Unable to get current weather data.") }
-          
-          log.warning("Error: Unable to get current weather from JSON: \(json)")
+          log.warning("Error: Unable to get weather data from location: \(String(describing: location))")
         }
       })
       .addDisposableTo(disposeBag)
-    
-    weatherManager.dailyWeather.asObservable()
-      .subscribe(onNext: { json in
-        guard let json = json
-          else { return NSLog("Error: Unable to parse daily weather data.") }
-        
-        let data = json["data"][0]
-            
-        self.dailyLowLabel.text = String(data["temperatureMin"].intValue) + "°F"
-        self.dailyHighLabel.text = String(data["temperatureMax"].intValue) + "°F"
-        self.precipChanceLabel.text = String(data["precipProbability"].doubleValue * 100) + "%"
-        self.humidityLabel.text = String(data["humidity"].doubleValue * 100) + "%"
-        self.windSpeedLabel.text = String(data["windSpeed"].doubleValue) + " mph"
-      })
-      .addDisposableTo(disposeBag)
+  }
+  
+  func bindCurrentWeather(with data: CurrentWeather)
+  {
+    self.summaryLabel.text = data.summary
+    self.temperatureLabel.text = "\(data.temperature)°F"
+    self.apparentTemperatureLabel.text = "\(data.apparentTemperature)°F"
+    self.weatherIcon.image = UIImage(named: data.icon) ?? UIImage(named: "clear-day")
+  }
+  
+  func bindDailyWeather(with data: DailyWeather)
+  {
+    self.dailyLowLabel.text = "\(data.temperatureMin)°F"
+    self.dailyHighLabel.text = "\(data.temperatureMax)°F"
+    self.precipChanceLabel.text = "\(data.precipProbability * 100)%"
+    self.humidityLabel.text = "\(data.humidity * 100)%"
+    self.windSpeedLabel.text = "\(data.windSpeed) mph"
   }
   
   func showChooseLocationIfNoHome(location: Location?)
@@ -155,10 +149,5 @@ fileprivate extension HomeViewController {
   {
     let chooseLocationViewController = ChooseLocationViewController()
     navigationController?.pushViewController(chooseLocationViewController, animated: true)
-  }
-  
-  func fetchWeather()
-  {
-    weatherManager.getWeatherForHome()
   }
 }
