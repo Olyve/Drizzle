@@ -69,12 +69,12 @@ fileprivate extension ChooseLocationViewModel {
   {
     let json = JSON(data: data)
     
-    guard let lat = json["results"][0]["geometry"]["location"]["lat"].float,
-          let lng = json["results"][0]["geometry"]["location"]["lng"].float,
+    guard let lat = json["results"][0]["geometry"]["location"]["lat"].double,
+          let lng = json["results"][0]["geometry"]["location"]["lng"].double,
           let address = json["results"][0]["formatted_address"].string
       else { NSLog("Error: Unable to parse location data from results JSON"); return }
     
-    apiLocation.value = Location(latitude: String(lat), longitude: String(lng), formattedAddress: address)
+    apiLocation.value = Location(latitude: lat, longitude: lng, formattedAddress: address)
     isLoading.onNext(false)
   }
 }
