@@ -14,12 +14,8 @@ import UIKit
 
 protocol HomeViewModelType {
   var homeLocation: Variable<Location?> { get }
-  var weatherFetched: Bool { get }
-  var currentWeather: Variable<JSON?> { get }
-  var dailyWeather: Variable<JSON?> { get }
   
   func getWeatherForHome()
-  func getWeatherIcon() -> String
 }
 
 class HomeViewModel: HomeViewModelType {
@@ -28,23 +24,18 @@ class HomeViewModel: HomeViewModelType {
   }
   
   let homeLocation = Variable<Location?>(nil)
-  var weatherFetched = false
-  var currentWeather = Variable<JSON?>(nil)
-  var dailyWeather = Variable<JSON?>(nil)
   
   fileprivate let disposeBag = DisposeBag()
-  fileprivate var apiKey = ""
   
   fileprivate let locationManager: LocationManagerType
-  fileprivate let networkClient: NetworkClientType
+  fileprivate let fetchWeather: FetchWeatherType
   
   init(locationManager: LocationManagerType = LocationManager(),
-       networkClient: NetworkClientType = NetworkClient())
+       fetchWeather: FetchWeatherType = FetchWeather())
   {
     self.locationManager = locationManager
-    self.networkClient = networkClient
+    self.fetchWeather = fetchWeather
     
-    getAPIKey()
     locationManager.homeLocation.asObservable().bindTo(self.homeLocation).addDisposableTo(disposeBag)
   }
 }
@@ -53,62 +44,38 @@ class HomeViewModel: HomeViewModelType {
 extension HomeViewModel {
   func getWeatherForHome()
   {
-    weatherFetched = false
-    fetchWeatherData()
-      .then { data -> Void in
-        let json = JSON(data: data)
-        
-        self.currentWeather.value = json["currently"]
-        self.dailyWeather.value = json["daily"]
-        self.weatherFetched = true
-      }
-      .catch { error in NSLog("\(error)") }
-  }
-  
-  func getWeatherIcon() -> String
-  {
-    guard let currentWeather = currentWeather.value
-      else { return "clear-day" }
-    
-    switch(currentWeather["icon"].stringValue) {
-      case "clear-night":         return "clear-night"
-      case "rain":                return "rain"
-      case "snow":                return "snow"
-      case "sleet":               return "sleet"
-      case "wind":                return "wind"
-      case "fog":                 return "fog"
-      case "cloudy":              return "cloudy"
-      case "partly-cloudy-day":   return "partly-cloudy"
-      case "partly-cloudy-night": return "partly-cloudy-night"
-      case "thunderstorm":        return "storm"
-      default:                    return "clear-day"
+    if let location = homeLocation.value {
+      _ = fetchWeather.fetchWeather(for: location)
+        .then { json -> Void in
+          location.currentWeather = self.parseCurrentWeather(from: json)
+          location.dailyWeather = self.parseDailyWeather(from: json)
+        }
     }
   }
 }
 
-// MARK: - Helpers
-private extension HomeViewModel {
-  func getAPIKey()
+fileprivate extension HomeViewModel {
+  func parseCurrentWeather(from json: JSON) -> CurrentWeather?
   {
-    guard let file = Bundle.main.url(forResource: "config", withExtension: "json"),
-          let data = try? Data(contentsOf: file)
-      else { NSLog("Error parsing Data from config file"); return }
+    let currently = json["currently"]
     
-    let json = JSON(data: data)
-    apiKey = json["api_key"].stringValue
+    return CurrentWeather(summary: currently["summary"].stringValue,
+                          icon: currently["icon"].stringValue,
+                          temperature: currently["temperature"].doubleValue,
+                          apparentTemperature: currently["apparentTemperature"].doubleValue)
   }
   
-  func fetchWeatherData() -> Promise<Data>
+  // For now, this only pulls the current day aka. [0]
+  func parseDailyWeather(from json: JSON) -> DailyWeather?
   {
-    guard weatherFetched == false,
-      let home = homeLocation.value
-      else { return Promise(error: Errors.weatherFetched) }
+    // This skips the daily summary and icon
+    let daily = json["daily"]["data"][0]
     
-    let homeString = "\(home.latitude),\(home.longitude)"
-    let encodedLocation = homeString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-    let options = "?exclude=[minutely,hourly,flags,alerts]".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-    let urlString = "https://api.darksky.net/forecast/\(apiKey)/\(encodedLocation)\(options)"
-    
-    return networkClient.makeRequest(urlString: urlString)
+    return DailyWeather(temperatureMin: daily["temperatureMin"].doubleValue,
+                        temperatureMax: daily["temperatureMax"].doubleValue,
+                        precipProbability: daily["precipProbability"].doubleValue,
+                        precipType: daily["precipType"].stringValue,
+                        humidity: daily["humidity"].doubleValue,
+                        windSpeed: daily["windSpeed"].doubleValue)
   }
 }
