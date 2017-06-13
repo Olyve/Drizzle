@@ -6,26 +6,23 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
+import Bond
 import PromiseKit
-import RxCocoa
-import RxSwift
 import SwiftyJSON
 
 protocol ChooseLocationViewModelType {
-  var homeLocation: Variable<Location?> { get }
-  var apiLocation: Variable<Location?> { get }
-  var isLoading: BehaviorSubject<Bool> { get }
+  var homeLocation: Observable<Location?> { get }
+  var apiLocation: Observable<Location?> { get }
+  var isLoading: Observable<Bool> { get }
   
   func getLocationFrom(addressString: String)
   func setNewHomeLocation()
 }
 
 class ChooseLocationViewModel: ChooseLocationViewModelType {
-  let homeLocation = Variable<Location?>(nil)
-  let apiLocation = Variable<Location?>(nil)
-  let isLoading = BehaviorSubject<Bool>(value: false)
-  
-  fileprivate let disposeBag = DisposeBag()
+  let homeLocation = Observable<Location?>(nil)
+  let apiLocation = Observable<Location?>(nil)
+  let isLoading = Observable<Bool>(false)
   
   fileprivate let locationManager: LocationManagerType
   fileprivate let networkClient: NetworkClientType
@@ -36,9 +33,7 @@ class ChooseLocationViewModel: ChooseLocationViewModelType {
     self.locationManager = locationManager
     self.networkClient = networkClient
     
-    self.locationManager.homeLocation.asObservable()
-      .bindTo(homeLocation)
-      .addDisposableTo(disposeBag)
+    self.locationManager.homeLocation.bind(to: self.homeLocation)
   }
 }
 
@@ -46,7 +41,7 @@ class ChooseLocationViewModel: ChooseLocationViewModelType {
 extension ChooseLocationViewModel {
   func getLocationFrom(addressString: String)
   {
-    isLoading.onNext(true)
+    isLoading.next(true)
     let urlEncodedAddress = addressString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
     let urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(urlEncodedAddress)"
     
@@ -75,6 +70,6 @@ fileprivate extension ChooseLocationViewModel {
       else { NSLog("Error: Unable to parse location data from results JSON"); return }
     
     apiLocation.value = Location(latitude: lat, longitude: lng, formattedAddress: address)
-    isLoading.onNext(false)
+    isLoading.next(false)
   }
 }

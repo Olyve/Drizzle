@@ -6,12 +6,11 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
+import Bond
 @testable import Drizzle
-import RxCocoa
-import RxSwift
 
 class MockLocationManager: LocationManagerType {
-  var homeLocation = Variable<Location?>(nil)
+  var homeLocation = Observable<Location?>(nil)
   
   var setHomeLocationCalled = false
   func setHomeLocation(location: Location) {

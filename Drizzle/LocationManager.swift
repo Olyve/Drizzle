@@ -6,20 +6,17 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import Bond
 import SwiftyJSON
 
 protocol LocationManagerType {
-  var homeLocation: Variable<Location?> { get }
+  var homeLocation: Observable<Location?> { get }
   
   func setHomeLocation(location: Location)
 }
 
 class LocationManager: LocationManagerType {
-  let homeLocation = Variable<Location?>(nil)
-  
-  private let disposeBag = DisposeBag()
+  let homeLocation = Observable<Location?>(nil)
   
   fileprivate let userDefaults: UserDefaults
   
@@ -27,10 +24,10 @@ class LocationManager: LocationManagerType {
   {
     self.userDefaults = userDefaults
     
-    userDefaults.rx.observe(String.self, LocationManager.HomeLocationKey).asObservable()
-      .map { self.initLocation(from: $0) }
-      .bindTo(self.homeLocation)
-      .addDisposableTo(disposeBag)
+    userDefaults.reactive
+      .keyPath(LocationManager.HomeLocationKey, ofType: Optional<String>.self, context: .immediateOnMain)
+      .map { [weak self] in self?.initLocation(from: $0) }
+      .bind(to: homeLocation)
   }
 }
 

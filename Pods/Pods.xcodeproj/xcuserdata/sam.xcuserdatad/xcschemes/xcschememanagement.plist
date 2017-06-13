@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bond.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Diff.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Nimble.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,22 +39,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RxBlocking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RxCocoa.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RxSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RxTest.xcscheme</key>
+		<key>ReactiveKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,17 +57,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1A1539745C606B45EDBFB3414FC7C456</key>
+		<key>1BFE40BFD77903595DF0536CED746055</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2A214AF6194D370D4B79E9D94D80F1EE</key>
+		<key>1F1AFF15B2BF0B5AD5C6281B48D67A85</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>41A3EB25551603B35698A12C23EEB735</key>
+		<key>228B526A4A5B5DD5B8E5553FEAF442D1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2ED2A949DDD54EB688701F26BF9C351E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F45E6EDDB0327A5D520E0C3C09C2324</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5E518BE9539BBE0A652429F1355597CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,37 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>844C59A099C00972AD5C5291937F8E77</key>
+		<key>8485B972782270B2514EA13E76C76D65</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C74C438BC93CF130E58E6FCCF9BF1F1C</key>
+		<key>C3C807C75CBE18B1879D4C5AA3BCEA63</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D9252CEF4E9353B380CD0D45E9915CD0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DF2835F82D6146C5F87A6B588124F726</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F05E9D25A62B54D9C1852EA8DA7368A1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4BCA8E2B8B39CE0F5823251651F4FF1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FF4EC4E20A783840FAB8234515B62E87</key>
+		<key>FC6661059726AEE1263BC55C8DD24878</key>
 		<dict>
 			<key>primary</key>
 			<true/>

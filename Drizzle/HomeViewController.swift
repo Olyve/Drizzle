@@ -6,7 +6,7 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
-import RxSwift
+import Bond
 import SwiftyJSON
 import UIKit
 
@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
   
   fileprivate let viewModel: HomeViewModelType
   
-  fileprivate let disposeBag = DisposeBag()
   fileprivate var settingsButton: UIBarButtonItem!
   fileprivate var homeLocationButton: UIBarButtonItem!
   
@@ -83,18 +82,19 @@ extension HomeViewController {
 fileprivate extension HomeViewController {
   func setBindings()
   {
-    viewModel.homeLocation.asObservable()
-      .subscribe(onNext: { self.showChooseLocationIfNoHome(location: $0) })
-      .addDisposableTo(disposeBag)
+    viewModel.homeLocation
+      .observeNext { [weak self] in self?.showChooseLocationIfNoHome(location: $0) }
+      .dispose(in: bag)
     
-    viewModel.homeLocation.asObservable()
-      .subscribe(onNext: { location in
+    viewModel.homeLocation
+      .observeNext { [weak self] location in
         if let location = location {
-          self.addressLabel.text = location.formattedAddress
-          self.viewModel.getWeatherForHome()
+          self?.addressLabel.text = location.formattedAddress
+          self?.viewModel.getWeatherForHome()
         }
-      })
-      .addDisposableTo(disposeBag)
+      }
+      .dispose(in: bag)
+    
     
     setWeatherBindings()
   }
@@ -102,17 +102,18 @@ fileprivate extension HomeViewController {
   func setWeatherBindings()
   {
     // Current Weather
-    viewModel.homeLocation.asObservable()
-      .subscribe(onNext: { [weak self] location in
-        if let location = location, let currentWeather = location.currentWeather, let dailyWeather = location.dailyWeather {
-          self?.bindCurrentWeather(with: currentWeather)
-          self?.bindDailyWeather(with: dailyWeather)
-        }
-        else {
-          log.warning("Error: Unable to get weather data from location: \(String(describing: location))")
-        }
-      })
-      .addDisposableTo(disposeBag)
+    viewModel.homeLocation.observeNext { [weak self] location in
+      if let location = location,
+         let currentWeather = location.currentWeather,
+         let dailyWeather = location.dailyWeather?.first {
+        self?.bindCurrentWeather(with: currentWeather)
+        self?.bindDailyWeather(with: dailyWeather)
+      }
+      else {
+        log.warning("Error: Unable to get weather data from location: \(String(describing: location))")
+      }
+    }
+    .dispose(in: bag)
   }
   
   func bindCurrentWeather(with data: CurrentWeather)

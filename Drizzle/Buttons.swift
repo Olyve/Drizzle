@@ -6,13 +6,9 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
 import UIKit
 
 class DrizzleBorderButton: UIButton {
-  let disposeBag = DisposeBag()
-  
   deinit {
     removeObserver(self, forKeyPath: #keyPath(isEnabled))
   }

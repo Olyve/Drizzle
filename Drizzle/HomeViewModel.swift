@@ -6,14 +6,13 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
+import Bond
 import PromiseKit
-import RxSwift
-import RxCocoa
 import SwiftyJSON
 import UIKit
 
 protocol HomeViewModelType {
-  var homeLocation: Variable<Location?> { get }
+  var homeLocation: Observable<Location?> { get }
   
   func getWeatherForHome()
 }
@@ -23,9 +22,7 @@ class HomeViewModel: HomeViewModelType {
     case weatherFetched
   }
   
-  let homeLocation = Variable<Location?>(nil)
-  
-  fileprivate let disposeBag = DisposeBag()
+  let homeLocation = Observable<Location?>(nil)
   
   fileprivate let locationManager: LocationManagerType
   fileprivate let fetchWeather: FetchWeatherType
@@ -36,7 +33,7 @@ class HomeViewModel: HomeViewModelType {
     self.locationManager = locationManager
     self.fetchWeather = fetchWeather
     
-    locationManager.homeLocation.asObservable().bindTo(self.homeLocation).addDisposableTo(disposeBag)
+    locationManager.homeLocation.bind(to: self.homeLocation)
   }
 }
 

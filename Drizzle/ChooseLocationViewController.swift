@@ -6,9 +6,8 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
+import Bond
 import Foundation
-import RxCocoa
-import RxSwift
 import SwiftyJSON
 import UIKit
 
@@ -18,7 +17,6 @@ class ChooseLocationViewController: UIViewController {
   @IBOutlet weak var addressLabel: UILabel!
   @IBOutlet weak var verifyButton: DrizzleBorderButton!
   
-  fileprivate let disposeBag = DisposeBag()
   fileprivate let backButton = UIBarButtonItem(title: "Back",
                                                style: .plain,
                                                target: self,
@@ -82,29 +80,29 @@ extension ChooseLocationViewController: UITextFieldDelegate {
 fileprivate extension ChooseLocationViewController {
   func setBindings()
   {
-    viewModel.homeLocation.asObservable()
+    viewModel.homeLocation
       .map { location in location != nil }
-      .bindTo(backButton.rx.isEnabled)
-      .addDisposableTo(disposeBag)
+      .bind(to: backButton.reactive.isEnabled)
+      .dispose(in: bag)
     
-    viewModel.apiLocation.asObservable()
+    viewModel.apiLocation
       .map { location in location != nil }
-      .bindNext({ locationExists in
-        self.verifyButton.isEnabled = locationExists
-        self.confirmationLabel.isHidden = !locationExists
-      })
-      .addDisposableTo(disposeBag)
+      .observeNext { [weak self] locationExists in
+        self?.verifyButton.isEnabled = locationExists
+        self?.confirmationLabel.isHidden = !locationExists
+      }
+      .dispose(in: bag)
     
-    viewModel.apiLocation.asObservable()
+    viewModel.apiLocation
       .map { location in location?.formattedAddress }
-      .bindTo(addressLabel.rx.text)
-      .addDisposableTo(disposeBag)
+      .bind(to: addressLabel)
+      .dispose(in: bag)
     
     viewModel.isLoading
-      .subscribe(onNext: { isLoading in
+      .observeNext { isLoading in
         UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
-      })
-      .addDisposableTo(disposeBag)
+      }
+      .dispose(in: bag)
   }
   
   func handleDisplayingBackButton()
