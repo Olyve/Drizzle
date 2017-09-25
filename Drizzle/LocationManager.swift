@@ -91,7 +91,7 @@ extension LocationManager {
     guard let dataString = string
       else { log.warning("Location data did not exist, returning nil"); return nil }
     
-    let json = JSON.parse(dataString)
+    let json = JSON(parseJSON: dataString)
     
     return Location(from: json)
   }

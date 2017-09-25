@@ -38,8 +38,8 @@ extension SettingsViewController {
     navigationController?.navigationBar.barStyle = .black
     navigationController?.navigationBar.tintColor = UIColor.drizzleWhite
     navigationController?.navigationBar.titleTextAttributes = [
-      NSForegroundColorAttributeName: UIColor.drizzleWhite,
-      NSFontAttributeName: UIFont(name: "Quicksand-Regular", size: 20)!
+      NSAttributedStringKey.foregroundColor: UIColor.drizzleWhite,
+      NSAttributedStringKey.font: UIFont(name: "Quicksand-Regular", size: 20)!
     ]
     
     navigationItem.title = "Settings"

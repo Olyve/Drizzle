@@ -6,25 +6,25 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
-@testable import Drizzle
-import Nimble
-import Quick
+//@testable import Drizzle
+//import Quick
+//
+//class FetchWeatherSpec: QuickSpec {
+//  override func spec() {
+//    describe("FetchWeather") {
+//      let networkClient = MockNetworkClient()
+//      let location = Location.fromJSONFile()!
+//      let url = "https://api.darksky.net/forecast/api_key/74.0,34.0?exclude=[minutely,hourly,flags,alerts]"
+//
+//      let subject = FetchWeather(networkClient: networkClient)
+//
+//      it("should make correct request") {
+//        let _ = subject.fetchWeather(for: location, usingMetrics: false)
+//
+//        expect(networkClient.makeRequestWasCalled).toEventually(beTrue())
+//        expect(networkClient.url).toEventually(equal(url))
+//      }
+//    }
+//  }
+//}
 
-class FetchWeatherSpec: QuickSpec {
-  override func spec() {
-    describe("FetchWeather") {
-      let networkClient = MockNetworkClient()
-      let location = Location.fromJSONFile()!
-      let url = "https://api.darksky.net/forecast/api_key/74.0,34.0?exclude=[minutely,hourly,flags,alerts]"
-      
-      let subject = FetchWeather(networkClient: networkClient)
-      
-      it("should make correct request") {
-        let _ = subject.fetchWeather(for: location)
-            
-        expect(networkClient.makeRequestWasCalled).toEventually(beTrue())
-        expect(networkClient.url).toEventually(equal(url))
-      }
-    }
-  }
-}

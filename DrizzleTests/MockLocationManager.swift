@@ -10,6 +10,16 @@ import Bond
 @testable import Drizzle
 
 class MockLocationManager: LocationManagerType {
+  var useMetricUnits: Property<Bool>
+  
+  func setUseMetrics(use: Bool) {
+    
+  }
+  
+  func getWeatherForHome() {
+    
+  }
+  
   var homeLocation = Observable<Location?>(nil)
   
   var setHomeLocationCalled = false
