@@ -6,14 +6,12 @@ target 'Drizzle' do
 
   pod 'Bond'
   pod 'PromiseKit'
-  pod 'ReactiveKit'
   pod 'SwiftyBeaver'
   pod 'SwiftyJSON'
 
   target 'DrizzleTests' do
     inherit! :search_paths
     
-    pod 'Bond'
     pod 'Nimble'
     pod 'Quick'
   end

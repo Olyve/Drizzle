@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import SwiftyJSON // Temporary
 
 // Set up global logging
 import SwiftyBeaver
@@ -22,10 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Set up and add log destinations:
     let console = ConsoleDestination()
-    
     log.addDestination(console)
     
     window = UIWindow(frame: UIScreen.main.bounds)
+    
+    // Temprorary Fix for Crashing on Startup
+    let oldData: [String: Any]? = UserDefaults.standard.value(forKey: "home_location") as? [String : Any]
+    if let data = oldData {
+      let json = JSON(data)
+      UserDefaults.standard.set(json.stringValue, forKey: "home_location")
+    }
     
     let homeViewController = HomeViewController()
     

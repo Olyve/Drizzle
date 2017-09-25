@@ -67,7 +67,7 @@ extension HomeViewController {
     
     navigationController?.navigationBar.barStyle = .black
     
-//    viewModel.getWeatherForHome()
+    viewModel.updateWeatherInfo()
   }
   
   override func viewWillDisappear(_ animated: Bool)
@@ -90,7 +90,6 @@ fileprivate extension HomeViewController {
       .observeNext { [weak self] location in
         if let location = location {
           self?.addressLabel.text = location.formattedAddress
-          self?.viewModel.getWeatherForHome()
         }
       }
       .dispose(in: bag)

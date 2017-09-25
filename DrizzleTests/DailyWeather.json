@@ -1,4 +1,7 @@
 {
+  "time": 123456789,
+  "summary": "Rain starting in the evening.",
+  "icon": "rain",
   "temp_min": 34,
   "temp_max": 56,
   "precip_probability": 0.56,

@@ -57,8 +57,8 @@ class CurrentWeatherSpec: QuickSpec {
           
           expect(json["summary"].stringValue).to(equal("Partly Cloudy"))
           expect(json["icon"].stringValue).to(equal("partly-cloudy"))
-          expect(json["temperature"].doubleValue).to(equal(56))
-          expect(json["apparent_temp"].doubleValue).to(equal(50))
+          expect(json["temperature"].intValue).to(equal(56))
+          expect(json["apparent_temp"].intValue).to(equal(50))
         }
       }
     }

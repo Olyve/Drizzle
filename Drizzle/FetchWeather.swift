@@ -10,7 +10,7 @@ import PromiseKit
 import SwiftyJSON
 
 protocol FetchWeatherType {
-  func fetchWeather(for location: Location) -> Promise<JSON>
+  func fetchWeather(for location: Location, usingMetrics: Bool) -> Promise<JSON>
 }
 
 class FetchWeather: FetchWeatherType {
@@ -28,11 +28,12 @@ class FetchWeather: FetchWeatherType {
 
 // MARK: - Interface
 extension FetchWeather {
-  func fetchWeather(for location: Location) -> Promise<JSON>
+  func fetchWeather(for location: Location, usingMetrics: Bool) -> Promise<JSON>
   {
     let locationString = "\(location.latitude),\(location.longitude)"
     let encodedLocation = locationString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "encoding error"
-    let options = "?exclude=[minutely,hourly,flags,alerts]"
+    let units = usingMetrics ? "si" : "us"
+    let options = "?exclude=[minutely,hourly,flags,alerts],units=[\(units)]"
     let urlString = "https://api.darksky.net/forecast/\(apiKey)/\(encodedLocation)\(options)"
     
     return networkClient.makeRequest(urlString: urlString).then { data in JSON(data: data) }

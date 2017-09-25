@@ -6,17 +6,13 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
+import Bond
 import UIKit
 import UserNotifications
 
 class SettingsViewController: UIViewController {
-  @IBOutlet weak var alarmPicker: UIDatePicker!
-  @IBAction func confirmTimeTapped(_ sender: UIButton)
-  {
-    // Notification are not working as intended at the moment.
-    // FIXME: Notifications
-    //setNotificationTimeAndHandleAuthorization()
-  }
+  @IBOutlet weak var unitLabel: UILabel!
+  @IBOutlet weak var unitSwitch: UISwitch!
   
   init()
   {
@@ -30,6 +26,11 @@ class SettingsViewController: UIViewController {
 
 // MARK: - View Life Cycle
 extension SettingsViewController {
+  override func viewDidLoad()
+  {
+    
+  }
+  
   override func viewWillAppear(_ animated: Bool)
   {
     super.viewWillAppear(animated)
@@ -42,11 +43,6 @@ extension SettingsViewController {
     ]
     
     navigationItem.title = "Settings"
-    
-    alarmPicker.setValue(UIColor.drizzleWhite, forKey: "textColor")
-    alarmPicker.datePickerMode = .dateAndTime
-    alarmPicker.datePickerMode = .time
-    alarmPicker.minuteInterval = 5
   }
   
   override func viewWillDisappear(_ animated: Bool)

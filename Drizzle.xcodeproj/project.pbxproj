@@ -16,6 +16,7 @@
 		220D11C81ED3711A00BDBF1A /* DailyWeatherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D11C71ED3711A00BDBF1A /* DailyWeatherSpec.swift */; };
 		220D11CA1ED372DC00BDBF1A /* DailyWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 220D11C91ED372DC00BDBF1A /* DailyWeather.json */; };
 		221CD1021E9D47B100D01826 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221CD1011E9D47B100D01826 /* HomeViewController.xib */; };
+		221D45DB1ED4B98600DF8515 /* DailyWeatherAlt.json in Resources */ = {isa = PBXBuildFile; fileRef = 221D45DA1ED4B98600DF8515 /* DailyWeatherAlt.json */; };
 		2250DFAD1EA0008C00F8FC0A /* ChooseLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFAC1EA0008C00F8FC0A /* ChooseLocationViewModel.swift */; };
 		2250DFAF1EA00B7500F8FC0A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */; };
 		2250DFB11EA52B0400F8FC0A /* LocationManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFB01EA52B0400F8FC0A /* LocationManagerSpec.swift */; };
@@ -68,6 +69,7 @@
 		220D11C71ED3711A00BDBF1A /* DailyWeatherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyWeatherSpec.swift; sourceTree = "<group>"; };
 		220D11C91ED372DC00BDBF1A /* DailyWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DailyWeather.json; sourceTree = "<group>"; };
 		221CD1011E9D47B100D01826 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		221D45DA1ED4B98600DF8515 /* DailyWeatherAlt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DailyWeatherAlt.json; sourceTree = "<group>"; };
 		2250DFAC1EA0008C00F8FC0A /* ChooseLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewModel.swift; sourceTree = "<group>"; };
 		2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		2250DFB01EA52B0400F8FC0A /* LocationManagerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerSpec.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */,
 				220D11C91ED372DC00BDBF1A /* DailyWeather.json */,
+				221D45DA1ED4B98600DF8515 /* DailyWeatherAlt.json */,
 				220D11B71ED20B8500BDBF1A /* Location.json */,
 			);
 			name = JSON;
@@ -381,7 +384,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Sam Galizia";
 				TargetAttributes = {
 					228A2A381E9D3FE600D991E5 = {
@@ -446,6 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221D45DB1ED4B98600DF8515 /* DailyWeatherAlt.json in Resources */,
 				220D11CA1ED372DC00BDBF1A /* DailyWeather.json in Resources */,
 				220D11B81ED20B8500BDBF1A /* Location.json in Resources */,
 				22C7F0151ECCDE1200A5CD91 /* CurrentWeather.json in Resources */,
@@ -617,7 +621,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -625,7 +631,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -667,7 +677,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -675,7 +687,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

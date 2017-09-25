@@ -12,16 +12,16 @@ class Location: JSONConvertable {
   var latitude: Double
   var longitude: Double
   var formattedAddress: String
-  var lastFetchTime: Int?
+  var lastFetchTime: Int
   var currentWeather: CurrentWeather?
-  var dailyWeather: DailyWeather?
+  var dailyWeather: [DailyWeather]?
   
   init(latitude: Double,
        longitude: Double,
        formattedAddress: String,
-       lastFetchTime: Int? = nil,
+       lastFetchTime: Int = 0,
        currentWeather: CurrentWeather? = nil,
-       dailyWeather: DailyWeather? = nil)
+       dailyWeather: [DailyWeather]? = nil)
   {
     self.latitude = latitude
     self.longitude = longitude
@@ -42,7 +42,11 @@ class Location: JSONConvertable {
     // Because these can be nil, they need to be left out of the guard statement or it will
     // return a nil Location when we really have a location with no weather data.
     let currentWeather = CurrentWeather(from: json[Location.CurrentWeatherKey])
-    let dailyWeather = DailyWeather(from: json[Location.DailyWeatherKey])
+    var dailyWeather: [DailyWeather]? = nil
+    
+    if let dailyJSON = json[Location.DailyWeatherKey].array {
+      dailyWeather = dailyJSON.flatMap(DailyWeather.init(from:))
+    }
     
     self.init(latitude: latitude,
               longitude: longitude,
@@ -57,14 +61,17 @@ class Location: JSONConvertable {
 extension Location {
   func toJSON() -> JSON
   {
-    let json: JSON = [
+    var json: JSON = [
       Location.LatitudeKey: latitude,
       Location.LongitudeKey: longitude,
       Location.AddressKey: formattedAddress,
-      Location.LastFetchKey: lastFetchTime ?? 0,
-      Location.CurrentWeatherKey: currentWeather?.toJSON() ?? "",
-      Location.DailyWeatherKey: dailyWeather?.toJSON() ?? ""
+      Location.LastFetchKey: lastFetchTime
     ]
+    let currentJSON: JSON? = currentWeather?.toJSON()
+    let dailyJSON: [JSON] = dailyWeather?.flatMap { $0.toJSON() } ?? [.null]
+    
+    json[Location.CurrentWeatherKey] = currentJSON ?? .null
+    json[Location.DailyWeatherKey] = JSON(dailyJSON)
     
     return json
   }
@@ -77,9 +84,12 @@ func ==(lhs: Location, rhs: Location) -> Bool
   return lhs.latitude == rhs.latitude &&
          lhs.longitude == rhs.longitude &&
          lhs.formattedAddress == rhs.formattedAddress &&
-         lhs.lastFetchTime == rhs.lastFetchTime &&
-         lhs.currentWeather == rhs.currentWeather &&
-         lhs.dailyWeather == rhs.dailyWeather
+         lhs.lastFetchTime == rhs.lastFetchTime
+  
+        // Removed from the check as comparing optionals does not work without force unwrapping
+        // them which is not safe nor is it smart in this situation.
+        // lhs.currentWeather == rhs.currentWeather &&
+        // lhs.dailyWeather == rhs.dailyWeather
 }
 
 // MARK: - Helpers

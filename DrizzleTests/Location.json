@@ -9,12 +9,29 @@
     "temperature": 80,
     "apparent_temp": 85
   },
-  "daily_weather": {
-    "temp_min": 34,
-    "temp_max": 56,
-    "precip_probability": 0.56,
-    "precip_type": "rain",
-    "humidity": 0.34,
-    "wind_speed": 4.5
-  }
+  "daily_weather":
+  [
+    {
+      "time": 123456789,
+      "summary": "Rain starting in the evening.",
+      "icon": "rain",
+      "temp_min": 34,
+      "temp_max": 56,
+      "precip_probability": 0.56,
+      "precip_type": "rain",
+      "humidity": 0.34,
+      "wind_speed": 4.5
+    },
+    {
+      "time": 987654321,
+      "summary": "Overcast",
+      "icon": "cloudy",
+      "temp_min": 58,
+      "temp_max": 72,
+      "precip_probability": 0.0,
+      "precip_type": "",
+      "humidity": 0.72,
+      "wind_speed": 1.34
+    }
+  ]
 }

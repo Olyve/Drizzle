@@ -11,10 +11,10 @@ import SwiftyJSON
 class CurrentWeather: JSONConvertable {
   var summary: String
   var icon: String
-  var temperature: Double
-  var apparentTemperature: Double
+  var temperature: Int
+  var apparentTemperature: Int
   
-  init(summary: String, icon: String, temperature: Double, apparentTemperature: Double)
+  init(summary: String, icon: String, temperature: Int, apparentTemperature: Int)
   {
     self.summary = summary
     self.icon = icon
@@ -26,8 +26,8 @@ class CurrentWeather: JSONConvertable {
   {
     guard let summary = json[CurrentWeather.SummaryKey].string,
           let icon = json[CurrentWeather.IconKey].string,
-          let temperature = json[CurrentWeather.TemperatureKey].double,
-          let apparentTemperature = json[CurrentWeather.ApparentTempKey].double
+          let temperature = json[CurrentWeather.TemperatureKey].int,
+          let apparentTemperature = json[CurrentWeather.ApparentTempKey].int
       else { log.warning("Failed to parse CurrentWeather from JSON"); return nil }
     
     self.init(summary: summary, icon: icon, temperature: temperature, apparentTemperature: apparentTemperature)
@@ -37,14 +37,14 @@ class CurrentWeather: JSONConvertable {
 // MARK: - JSONConvertable
 extension CurrentWeather {
   func toJSON() -> JSON {
-    let dictionary: [AnyHashable: Any] = [
+    let json: JSON = [
       CurrentWeather.SummaryKey: summary,
       CurrentWeather.IconKey: icon,
       CurrentWeather.TemperatureKey: temperature,
       CurrentWeather.ApparentTempKey: apparentTemperature
     ]
     
-    return JSON(dictionary)
+    return json
   }
 }
 

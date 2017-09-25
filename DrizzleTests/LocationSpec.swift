@@ -14,7 +14,8 @@ import SwiftyJSON
 class LocationSpec: QuickSpec {
   override func spec() {
     let currentWeather = CurrentWeather.fromJSONFile()!
-    let dailyWeather = DailyWeather.fromJSONFile()!
+    let dailyWeather = [DailyWeather.fromJSONFile()!,
+                        DailyWeather.fromJSONFile("DailyWeatherAlt")!]
     
     describe("Location") {
       it("should initialize") {
@@ -59,16 +60,22 @@ class LocationSpec: QuickSpec {
       }
       
       describe("toJSON") {
-        it("correctly converts to JSON") {
-          let subject = Location.fromJSONFile()
-          let json = subject!.toJSON()
-          
+        var subject: Location!
+        var json: JSON!
+        
+        beforeEach {
+          subject = Location.fromJSONFile()
+          json = subject.toJSON()
+        }
+        
+        it("correctly convert to JSON") {
           expect(json["latitude"].doubleValue).to(equal(74))
           expect(json["longitude"].doubleValue).to(equal(34))
           expect(json["address"].stringValue).to(equal("New York, NY"))
           expect(json["last_fetch"].intValue).to(equal(12345678))
           expect(json["current_weather"]).to(equal(currentWeather.toJSON()))
-          expect(json["daily_weather"]).to(equal(dailyWeather.toJSON()))
+          expect(json["daily_weather"].array).to(equal([dailyWeather[0].toJSON(),
+                                                        dailyWeather[1].toJSON()]))
         } 
       }
     }

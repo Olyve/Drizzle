@@ -24,7 +24,9 @@ extension JSON {
   {
     guard let fileURL = Bundle(for: Utilities.self).url(forResource: file, withExtension: "json"),
           let data = try? Data(contentsOf: fileURL)
-      else { log.error("Could not parse data from file \(file)"); return nil }
+      else {
+        log.error("Could not parse data from file \(file)");
+        return nil }
     
     self.init(data: data)
   }
