@@ -7,7 +7,7 @@
 //
 
 import Bond
-import Foundation
+import CoreData
 import SwiftyJSON
 import UIKit
 
@@ -17,16 +17,17 @@ class ChooseLocationViewController: UIViewController {
   @IBOutlet weak var addressLabel: UILabel!
   @IBOutlet weak var verifyButton: DrizzleBorderButton!
   
-  fileprivate let backButton = UIBarButtonItem(title: "Back",
-                                               style: .plain,
-                                               target: self,
-                                               action: #selector(backTapped))
+  private let backButton = UIBarButtonItem(title: "Back",
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(backTapped))
+  private let managedContext: NSManagedObjectContext!
+  private let viewModel: ChooseLocationViewModelType
   
-  fileprivate let viewModel: ChooseLocationViewModelType
-  
-  init(viewModel: ChooseLocationViewModelType = ChooseLocationViewModel())
+  init(managedContext: NSManagedObjectContext)
   {
-    self.viewModel = viewModel
+    self.managedContext = managedContext
+    self.viewModel = ChooseLocationViewModel(managedContext: self.managedContext)
     
     super.init(nibName: "ChooseLocationViewController", bundle: nil)
   }

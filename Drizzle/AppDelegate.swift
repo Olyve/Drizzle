@@ -18,6 +18,7 @@ let log = SwiftyBeaver.self
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  lazy var coreDataStack = CoreDataStack(modelName: "DrizzleModel")
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
@@ -34,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       UserDefaults.standard.set(json.stringValue, forKey: "home_location")
     }
     
-    let homeViewController = HomeViewController()
+    let homeViewController = HomeViewController(managedContext: coreDataStack.managedContext)
     
     let navigationController = UINavigationController(rootViewController: homeViewController)
     navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -67,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    coreDataStack.saveContext()
   }
 }
 

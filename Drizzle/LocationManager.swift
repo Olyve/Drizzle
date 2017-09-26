@@ -7,42 +7,37 @@
 //
 
 import Bond
+import CoreData
+import Moya
 import ReactiveKit
 import SwiftyJSON
 
 protocol LocationManagerType {
-  var homeLocation: Observable<Location?> { get }
-  var useMetricUnits: Observable<Bool> { get }
+  var homeLocation: Observable<LocationMO?> { get }
   
   func setHomeLocation(location: Location)
-  func setUseMetrics(use: Bool)
   func getWeatherForHome()
 }
 
 class LocationManager: LocationManagerType {
-  let homeLocation = Observable<Location?>(nil)
-  let useMetricUnits = Observable<Bool>(false)
+  let homeLocation = Observable<LocationMO?>(nil)
   
-  fileprivate let userDefaults: UserDefaults
-  fileprivate let fetchWeather: FetchWeatherType
+  private let managedContext: NSManagedObjectContext!
+  private let notificationCenter: NotificationCenter!
+  private let apiProvider = MoyaProvider<APIService>()
+  private let disposeBag = DisposeBag()
   
-  fileprivate let disposeBag = DisposeBag()
-  
-  init(userDefaults: UserDefaults = UserDefaults.standard,
-       fetchWeather: FetchWeatherType = FetchWeather())
+  init(managedContext: NSManagedObjectContext, notificationCenter: NotificationCenter = NotificationCenter.default)
   {
-    self.userDefaults = userDefaults
-    self.fetchWeather = fetchWeather
+    self.managedContext = managedContext
+    self.notificationCenter = notificationCenter
     
-    userDefaults.reactive
-      .keyPath(LocationManager.HomeLocationKey, ofType: Optional<String>.self, context: .immediateOnMain)
-      .map { [weak self] in self?.initLocation(from: $0) }
-      .bind(to: homeLocation)
+    homeLocation.value = getHomeLocation()
     
-    userDefaults.reactive
-      .keyPath(LocationManager.UseMetricKey, ofExpectedType: Bool.self, context: .immediateOnMain)
-      .observeNext { [weak self] useMetrics in
-        self?.useMetricUnits.value = useMetrics
+    // Observe for future changes
+    notificationCenter.reactive.notification(name: .NSManagedObjectContextDidSave)
+      .observe { [weak self] notification in
+        self?.homeLocation.value = self?.getHomeLocation()
       }
       .dispose(in: disposeBag)
   }
@@ -54,79 +49,125 @@ class LocationManager: LocationManagerType {
 
 // MARK: - Interface
 extension LocationManager {
+  func getHomeLocation() -> LocationMO?
+  {
+    do {
+      let locations = try managedContext.fetch(LocationMO.fetchRequest()) as [LocationMO]
+      return locations.filter({ $0.isHome }).first
+    }
+    catch let error {
+      log.error(error.localizedDescription)
+      return nil
+    }
+  }
+  
   func setHomeLocation(location: Location)
   {
-    userDefaults.set(location.toJSON().rawString(), forKey: LocationManager.HomeLocationKey)
+    // TODO: For now, just delete everything. Fix this later
+    do {
+      let deleteLocations = NSBatchDeleteRequest(fetchRequest: LocationMO.fetchRequest())
+      let deleteCurrentWeather = NSBatchDeleteRequest(fetchRequest: CurrentWeatherMO.fetchRequest())
+      let deleteDailyWeather = NSBatchDeleteRequest(fetchRequest: DailyWeatherMO.fetchRequest())
+      
+      try managedContext.execute(deleteLocations)
+      try managedContext.execute(deleteCurrentWeather)
+      try managedContext.execute(deleteDailyWeather)
+    }
+    catch let error {
+      log.error(error.localizedDescription)
+    }
+    
+    let newHome = LocationMO(context: managedContext)
+    
+    newHome.latitude = location.latitude
+    newHome.longitude = location.longitude
+    newHome.address = location.formattedAddress
+    newHome.lastFetchTime = location.lastFetchTime
+    newHome.isHome = true
+    
+    saveChanges()
   }
   
-  func setUseMetrics(use: Bool)
-  {
-    userDefaults.set(use, forKey: LocationManager.UseMetricKey)
-  }
-  
+  // TODO: This function is rather large, refactor it
   func getWeatherForHome()
   {
     if let location = homeLocation.value {
-      fetchWeather.fetchWeather(for: location, usingMetrics: useMetricUnits.value)
-        .then { json -> Void in
-          location.currentWeather = self.parseCurrentWeather(from: json)
-          location.dailyWeather = self.parseDailyWeather(from: json)
+      apiProvider.request(.fetchWeather(location: location)) { result in
+        switch result {
+        case .success(let moyaResponse):
+          do {
+            try moyaResponse.filterSuccessfulStatusCodes()
+            if let data = JSON(rawValue: try moyaResponse.mapJSON()) {
+              self.parseCurrentWeather(from: data)
+              self.parseDailyWeather(from: data)
+              self.saveChanges()
+            }
+            else {
+              log.error("Response from API failed: \(moyaResponse)")
+            }
+          }
+          catch let error {
+            log.error(error.localizedDescription)
+            log.info(moyaResponse.response as Any)
+          }
           
-          self.setHomeLocation(location: location)
-        }
-        .catch(execute: { (error) in
+        case .failure(let error):
           log.error(error.localizedDescription)
-        })
+        }
+      }
     }
   }
 }
 
 // MARK: - Helpers
 extension LocationManager {
-  static let HomeLocationKey = "home_location"
-  static let UseMetricKey = "use_metric"
-  
-  func initLocation(from string: String?) -> Location?
-  {
-    guard let dataString = string
-      else { log.warning("Location data did not exist, returning nil"); return nil }
-    
-    let json = JSON(parseJSON: dataString)
-    
-    return Location(from: json)
+  func saveChanges() {
+    do {
+      try managedContext.save()
+    }
+    catch let error {
+      log.error(error.localizedDescription)
+    }
   }
   
-  func parseCurrentWeather(from json: JSON) -> CurrentWeather?
+  func parseCurrentWeather(from json: JSON)
   {
+    guard let home = homeLocation.value else { return }
+    
     let currently = json["currently"]
+    let currentWeather = CurrentWeatherMO(context: managedContext)
     
-    return CurrentWeather(summary: currently["summary"].stringValue,
-                          icon: currently["icon"].stringValue,
-                          temperature: currently["temperature"].intValue,
-                          apparentTemperature: currently["apparentTemperature"].intValue)
+    currentWeather.summary = currently["summary"].stringValue
+    currentWeather.icon = currently["icon"].stringValue
+    currentWeather.temperature = currently["temperature"].int16Value
+    currentWeather.apparentTemperature = currently["apparentTemperature"].int16Value
+    
+    home.currentWeather = currentWeather
   }
   
-  // For now, this only pulls the current day aka. [0]
-  func parseDailyWeather(from json: JSON) -> [DailyWeather]?
+  func parseDailyWeather(from json: JSON)
   {
-    var forecast: [DailyWeather]? = []
+    guard let home = homeLocation.value else { return }
     
     // This skips the daily summary and icon
     let dailyData: [JSON] = json["daily"]["data"].arrayValue
     
     for day in dailyData {
-      let dailyWeather = DailyWeather(time: day["time"].intValue,
-                                      summary: day["summary"].stringValue,
-                                      icon: day["icon"].stringValue,
-                                      temperatureMin: day["temperatureMin"].intValue,
-                                      temperatureMax: day["temperatureMax"].intValue,
-                                      precipProbability: day["precipProbability"].doubleValue,
-                                      precipType: day["precipType"].stringValue,
-                                      humidity: day["humidity"].doubleValue,
-                                      windSpeed: day["windSpeed"].doubleValue)
-      forecast?.append(dailyWeather)
+      let dailyWeather = DailyWeatherMO(context: managedContext)
+      
+      dailyWeather.time = day["time"].int32Value
+      dailyWeather.summary = day["summary"].stringValue
+      dailyWeather.icon = day["icon"].stringValue
+      dailyWeather.temperatureMin = day["temperatureMin"].int16Value
+      dailyWeather.temperatureMax = day["temperatureMax"].int16Value
+      dailyWeather.precipProbability = day["precipProbability"].doubleValue
+      dailyWeather.precipType = day["precipType"].stringValue
+      dailyWeather.humidity = day["humidity"].doubleValue
+      dailyWeather.windSpeed = day["windSpeed"].doubleValue
+      
+      let mutableSet = home.dailyWeather?.mutableCopy() as! NSMutableOrderedSet
+      mutableSet.add(dailyWeather)
+      home.dailyWeather = mutableSet.copy() as? NSOrderedSet
     }
-    
-    return forecast
   }
 }

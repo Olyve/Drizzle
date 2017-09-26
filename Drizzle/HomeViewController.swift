@@ -7,6 +7,7 @@
 //
 
 import Bond
+import CoreData
 import SwiftyJSON
 import UIKit
 
@@ -22,14 +23,15 @@ class HomeViewController: UIViewController {
   @IBOutlet weak var humidityLabel: UILabel!
   @IBOutlet weak var windSpeedLabel: UILabel!
   
-  fileprivate let viewModel: HomeViewModelType
+  private let managedContext: NSManagedObjectContext!
+  private let viewModel: HomeViewModelType
+  private var settingsButton: UIBarButtonItem!
+  private var homeLocationButton: UIBarButtonItem!
   
-  fileprivate var settingsButton: UIBarButtonItem!
-  fileprivate var homeLocationButton: UIBarButtonItem!
-  
-  init(viewModel: HomeViewModelType = HomeViewModel())
+  init(managedContext: NSManagedObjectContext)
   {
-    self.viewModel = viewModel
+    self.managedContext = managedContext
+    self.viewModel = HomeViewModel(managedContext: self.managedContext)
     
     super.init(nibName: "HomeViewController", bundle: nil)
     
@@ -89,7 +91,7 @@ fileprivate extension HomeViewController {
     viewModel.homeLocation
       .observeNext { [weak self] location in
         if let location = location {
-          self?.addressLabel.text = location.formattedAddress
+          self?.addressLabel.text = location.address
         }
       }
       .dispose(in: bag)
@@ -101,29 +103,27 @@ fileprivate extension HomeViewController {
   func setWeatherBindings()
   {
     // Current Weather
-    viewModel.homeLocation.observeNext { [weak self] location in
-      if let location = location,
-         let currentWeather = location.currentWeather,
-         let dailyWeather = location.dailyWeather?.first {
-        self?.bindCurrentWeather(with: currentWeather)
-        self?.bindDailyWeather(with: dailyWeather)
-      }
-      else {
-        log.warning("Error: Unable to get weather data from location: \(String(describing: location))")
-      }
+    viewModel.homeLocation.observeNext { [weak self] homeLocation in
+      guard let location = homeLocation,
+            let currentWeather = location.currentWeather,
+            let dailyWeather = location.dailyWeather?[0] as? DailyWeatherMO
+        else { log.warning("Warning: Unable to get weather for: \(String(describing: homeLocation))"); return }
+      
+      self?.bindCurrentWeather(with: currentWeather)
+      self?.bindDailyWeather(with: dailyWeather)
     }
     .dispose(in: bag)
   }
   
-  func bindCurrentWeather(with data: CurrentWeather)
+  func bindCurrentWeather(with data: CurrentWeatherMO)
   {
     self.summaryLabel.text = data.summary
     self.temperatureLabel.text = "\(data.temperature)°F"
     self.apparentTemperatureLabel.text = "\(data.apparentTemperature)°F"
-    self.weatherIcon.image = UIImage(named: data.icon) ?? UIImage(named: "clear-day")
+    self.weatherIcon.image = UIImage(named: data.icon!) ?? UIImage(named: "clear-day")
   }
   
-  func bindDailyWeather(with data: DailyWeather)
+  func bindDailyWeather(with data: DailyWeatherMO)
   {
     self.dailyLowLabel.text = "\(data.temperatureMin)°F"
     self.dailyHighLabel.text = "\(data.temperatureMax)°F"
@@ -132,7 +132,7 @@ fileprivate extension HomeViewController {
     self.windSpeedLabel.text = "\(data.windSpeed) mph"
   }
   
-  func showChooseLocationIfNoHome(location: Location?)
+  func showChooseLocationIfNoHome(location: LocationMO?)
   {
     if location == nil {
       showChooseLocation()
@@ -141,13 +141,13 @@ fileprivate extension HomeViewController {
   
   @objc func showSettings()
   {
-    let settingsViewController = SettingsViewController()
+    let settingsViewController = SettingsViewController(managedContext: managedContext)
     navigationController?.pushViewController(settingsViewController, animated: true)
   }
   
   @objc func showChooseLocation()
   {
-    let chooseLocationViewController = ChooseLocationViewController()
+    let chooseLocationViewController = ChooseLocationViewController(managedContext: managedContext)
     navigationController?.pushViewController(chooseLocationViewController, animated: true)
   }
 }

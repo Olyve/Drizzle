@@ -7,20 +7,53 @@
 //
 
 import Bond
+import CoreData
+import ReactiveKit
 import UIKit
-import UserNotifications
 
 class SettingsViewController: UIViewController {
   @IBOutlet weak var unitLabel: UILabel!
   @IBOutlet weak var unitSwitch: UISwitch!
   
-  init()
+  private let managedContext: NSManagedObjectContext!
+  private let locationManager: LocationManager!
+  private let disposeBag = DisposeBag()
+  
+  init(managedContext: NSManagedObjectContext)
   {
+    
+    self.managedContext = managedContext
+    self.locationManager = LocationManager(managedContext: managedContext)
+    
     super.init(nibName: "SettingsViewController", bundle: nil)
+    
+    // TODO: Remove this force unwrap
+    locationManager
+      .homeLocation
+      .flatMap { location in
+        if let location = location {
+          return location.useMetric
+        }
+        
+        return false
+      }
+      .bind(to: unitSwitch.reactive.isOn)
+
+    unitSwitch.reactive.isOn.observe { [weak self] event in
+      self?.locationManager.homeLocation.value?.useMetric = event.element!
+      
+      do { try self?.managedContext.save() }
+      catch let error { log.error(error.localizedDescription) }
+    }
+    .dispose(in: disposeBag)
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  deinit {
+    disposeBag.dispose()
   }
 }
 

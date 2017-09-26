@@ -5,6 +5,7 @@ target 'Drizzle' do
   use_frameworks!
 
   pod 'Bond'
+  pod 'Moya'
   pod 'PromiseKit'
   pod 'SwiftyBeaver'
   pod 'SwiftyJSON'

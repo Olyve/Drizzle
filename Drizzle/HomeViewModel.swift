@@ -7,24 +7,25 @@
 //
 
 import Bond
-import PromiseKit
-import SwiftyJSON
-import UIKit
+import CoreData
+
 
 protocol HomeViewModelType {
-  var homeLocation: Observable<Location?> { get }
+  var homeLocation: Observable<LocationMO?> { get }
   
   func updateWeatherInfo()
 }
 
 class HomeViewModel: HomeViewModelType {
-  let homeLocation = Observable<Location?>(nil)
+  let homeLocation = Observable<LocationMO?>(nil)
   
-  fileprivate let locationManager: LocationManagerType
+  private let managedContext: NSManagedObjectContext!
+  private let locationManager: LocationManagerType
   
-  init(locationManager: LocationManagerType = LocationManager())
+  init(managedContext: NSManagedObjectContext)
   {
-    self.locationManager = locationManager
+    self.managedContext = managedContext
+    self.locationManager = LocationManager(managedContext: self.managedContext)
     
     locationManager.homeLocation.bind(to: homeLocation)
   }
