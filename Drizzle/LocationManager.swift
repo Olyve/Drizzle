@@ -122,11 +122,13 @@ extension LocationManager {
 // MARK: - Helpers
 extension LocationManager {
   func saveChanges() {
-    do {
-      try managedContext.save()
-    }
-    catch let error {
-      log.error(error.localizedDescription)
+    managedContext.performAndWait {
+      do {
+        try managedContext.save()
+      }
+      catch let error {
+        log.error(error.localizedDescription)
+      }
     }
   }
   
@@ -151,6 +153,7 @@ extension LocationManager {
     
     // This skips the daily summary and icon
     let dailyData: [JSON] = json["daily"]["data"].arrayValue
+    let dataSet = NSMutableOrderedSet()
     
     for day in dailyData {
       let dailyWeather = DailyWeatherMO(context: managedContext)
@@ -165,9 +168,9 @@ extension LocationManager {
       dailyWeather.humidity = day["humidity"].doubleValue
       dailyWeather.windSpeed = day["windSpeed"].doubleValue
       
-      let mutableSet = home.dailyWeather?.mutableCopy() as! NSMutableOrderedSet
-      mutableSet.add(dailyWeather)
-      home.dailyWeather = mutableSet.copy() as? NSOrderedSet
+      dataSet.add(dailyWeather)
     }
+    
+    home.dailyWeather = dataSet.copy() as? NSOrderedSet
   }
 }

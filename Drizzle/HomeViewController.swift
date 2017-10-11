@@ -27,6 +27,8 @@ class HomeViewController: UIViewController {
   private let viewModel: HomeViewModelType
   private var settingsButton: UIBarButtonItem!
   private var homeLocationButton: UIBarButtonItem!
+  private var temp_measure = Observable<String>("")
+  private var windSpeed_measure = Observable<String>("")
   
   init(managedContext: NSManagedObjectContext)
   {
@@ -44,6 +46,13 @@ class HomeViewController: UIViewController {
                                          target: self,
                                          action: #selector(showChooseLocation))
     
+    viewModel.useMetric
+      .map { $0 ? "ºC" : "ºF" }
+      .bind(to: temp_measure)
+    
+    viewModel.useMetric
+      .map { $0 ? "m/s" : "mph" }
+      .bind(to: windSpeed_measure)
   }
   
   required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -118,18 +127,18 @@ fileprivate extension HomeViewController {
   func bindCurrentWeather(with data: CurrentWeatherMO)
   {
     self.summaryLabel.text = data.summary
-    self.temperatureLabel.text = "\(data.temperature)°F"
-    self.apparentTemperatureLabel.text = "\(data.apparentTemperature)°F"
+    self.temperatureLabel.text = "\(data.temperature)\(temp_measure.value)"
+    self.apparentTemperatureLabel.text = "\(data.apparentTemperature)\(temp_measure.value)"
     self.weatherIcon.image = UIImage(named: data.icon!) ?? UIImage(named: "clear-day")
   }
   
   func bindDailyWeather(with data: DailyWeatherMO)
   {
-    self.dailyLowLabel.text = "\(data.temperatureMin)°F"
-    self.dailyHighLabel.text = "\(data.temperatureMax)°F"
+    self.dailyLowLabel.text = "\(data.temperatureMin)\(temp_measure.value)"
+    self.dailyHighLabel.text = "\(data.temperatureMax)\(temp_measure.value)"
     self.precipChanceLabel.text = "\(data.precipProbability * 100)%"
     self.humidityLabel.text = "\(data.humidity * 100)%"
-    self.windSpeedLabel.text = "\(data.windSpeed) mph"
+    self.windSpeedLabel.text = "\(data.windSpeed) \(windSpeed_measure.value)"
   }
   
   func showChooseLocationIfNoHome(location: LocationMO?)
@@ -141,7 +150,7 @@ fileprivate extension HomeViewController {
   
   @objc func showSettings()
   {
-    let settingsViewController = SettingsViewController(managedContext: managedContext)
+    let settingsViewController = SettingsViewController()
     navigationController?.pushViewController(settingsViewController, animated: true)
   }
   

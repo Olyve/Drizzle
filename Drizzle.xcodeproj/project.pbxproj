@@ -31,6 +31,7 @@
 		228DAD541E9EADF80019F867 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DAD521E9EADF80019F867 /* ChooseLocationViewController.swift */; };
 		228DAD551E9EADF80019F867 /* ChooseLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228DAD531E9EADF80019F867 /* ChooseLocationViewController.xib */; };
 		228DAD571E9EBC720019F867 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DAD561E9EBC720019F867 /* Buttons.swift */; };
+		22A4C7DC1F87FAA400CC5971 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4C7DB1F87FAA400CC5971 /* SettingsViewModel.swift */; };
 		22B00BDB1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00BDA1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift */; };
 		22B00BDF1ECA61A700B8BB46 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */; };
 		22B0A4CF1EC213ED0024A34F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4CD1EC213ED0024A34F /* SettingsViewController.swift */; };
@@ -95,6 +96,7 @@
 		228DAD521E9EADF80019F867 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		228DAD531E9EADF80019F867 /* ChooseLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseLocationViewController.xib; sourceTree = "<group>"; };
 		228DAD561E9EBC720019F867 /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		22A4C7DB1F87FAA400CC5971 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		22B00BDA1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherSpec.swift; sourceTree = "<group>"; };
 		22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		22B0A4CD1EC213ED0024A34F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -170,8 +172,9 @@
 		2250DFAB1EA0006B00F8FC0A /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */,
 				2250DFAC1EA0008C00F8FC0A /* ChooseLocationViewModel.swift */,
+				228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */,
+				22A4C7DB1F87FAA400CC5971 /* SettingsViewModel.swift */,
 			);
 			name = "View Models";
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				2250DFAD1EA0008C00F8FC0A /* ChooseLocationViewModel.swift in Sources */,
 				228A2A5E1E9D405200D991E5 /* HomeViewController.swift in Sources */,
 				2250DFAF1EA00B7500F8FC0A /* LocationManager.swift in Sources */,
+				22A4C7DC1F87FAA400CC5971 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

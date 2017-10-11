@@ -57,9 +57,10 @@ extension APIService: TargetType {
     case .verifyLocation(address: let address):
       let encodedAddress = address.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
       return .requestParameters(parameters: ["address" : encodedAddress], encoding: URLEncoding.queryString)
-    case .fetchWeather(let location):
+    case .fetchWeather:
       let exclude = "minutely,flags,alerts"
-      let units = location.useMetric ? "si" : "us"
+      let useMetric = UserDefaults.standard.value(forKey: "useMetric") as? Bool ?? false
+      let units = useMetric ? "si" : "us"
       return .requestParameters(parameters: ["exclude": "\(exclude)", "units": units], encoding: URLEncoding.queryString)
     }
   }
