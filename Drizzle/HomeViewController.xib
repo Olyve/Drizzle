@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -38,16 +38,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iOZ-fA-zzr">
-                    <rect key="frame" x="20" y="60" width="335" height="591"/>
+                    <rect key="frame" x="0.0" y="60" width="375" height="591"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYh-Ia-vkq">
-                            <rect key="frame" x="112" y="0.0" width="111" height="28"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="24"/>
                             <color key="textColor" red="0.83921568627450982" green="0.81568627450980391" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="BZb-AD-cnI">
-                            <rect key="frame" x="37.5" y="61" width="260" height="120"/>
+                            <rect key="frame" x="187.5" y="61" width="260" height="120"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" translatesAutoresizingMaskIntoConstraints="NO" id="dWd-td-vF4">
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
@@ -57,7 +57,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partly Cloudy" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qne-2L-2nK">
-                                    <rect key="frame" x="130" y="27.5" width="130" height="65.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="120"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="130" id="vdo-z1-b1P"/>
                                     </constraints>
@@ -72,28 +72,28 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NXc-zu-n6U">
-                            <rect key="frame" x="84" y="214.5" width="167.5" height="73"/>
+                            <rect key="frame" x="187.5" y="214.5" width="158" height="73"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55°F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6G-ND-xQO">
-                                    <rect key="frame" x="35" y="0.0" width="97" height="47"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="47"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="97" id="bsK-B7-3pG"/>
+                                        <constraint firstAttribute="width" constant="100" id="bsK-B7-3pG"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="40"/>
                                     <color key="textColor" red="0.83921568629999999" green="0.81568627449999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="5lq-J7-ITp">
-                                    <rect key="frame" x="0.0" y="47" width="167.5" height="26"/>
+                                    <rect key="frame" x="0.0" y="47" width="158" height="26"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feels Like:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g53-Rd-ERh">
-                                            <rect key="frame" x="0.0" y="0.0" width="112" height="26"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="105" height="26"/>
                                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="22"/>
                                             <color key="textColor" red="0.83921568629999999" green="0.81568627449999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="58℉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qy7-1e-6g6">
-                                            <rect key="frame" x="118" y="0.0" width="49.5" height="26"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="47" height="26"/>
                                             <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="22"/>
                                             <color key="textColor" red="0.83921568629999999" green="0.81568627449999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -103,14 +103,14 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p60-df-6aI">
-                            <rect key="frame" x="47.5" y="320.5" width="240" height="16"/>
+                            <rect key="frame" x="67.5" y="320.5" width="240" height="16"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="h3i-xj-fCn"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Forecast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0v-hK-C7L">
-                            <rect key="frame" x="65.5" y="370" width="204" height="28"/>
+                            <rect key="frame" x="187.5" y="370" width="204" height="28"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="204" id="ahG-gF-sZO"/>
                             </constraints>
@@ -119,13 +119,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="a3g-3y-hBs">
-                            <rect key="frame" x="27.5" y="431" width="280" height="160"/>
+                            <rect key="frame" x="172" y="431" width="280" height="160"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vsK-Vt-m7E">
-                                    <rect key="frame" x="10" y="0.0" width="260" height="30"/>
+                                    <rect key="frame" x="15.5" y="0.0" width="249" height="30"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4d-e4-STz">
-                                            <rect key="frame" x="0.0" y="0.0" width="49.5" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="PyP-fE-W5v"/>
                                             </constraints>
@@ -134,26 +134,26 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45℉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nu6-Y0-3vw">
-                                            <rect key="frame" x="59.5" y="0.0" width="50.5" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="47" height="30"/>
                                             <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="22"/>
                                             <color key="textColor" red="0.83921568629999999" green="0.81568627449999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUZ-Zb-2BG" userLabel="Spacer">
-                                            <rect key="frame" x="120" y="0.0" width="15" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="30"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="6Ep-Vj-HZB"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-tx-egS">
-                                            <rect key="frame" x="145" y="0.0" width="55.5" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="52" height="30"/>
                                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="22"/>
                                             <color key="textColor" red="0.83921568629999999" green="0.81568627449999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="62℉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLr-rk-deY">
-                                            <rect key="frame" x="210.5" y="0.0" width="49.5" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="47" height="30"/>
                                             <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="22"/>
                                             <color key="textColor" red="0.83921568629999999" green="0.81568627449999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -161,10 +161,10 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="uw7-64-04r">
-                                    <rect key="frame" x="29" y="36" width="222.5" height="30"/>
+                                    <rect key="frame" x="15.5" y="36" width="209.5" height="30"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precip. Chance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73B-rd-fTQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="169" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="tjk-CE-NMV"/>
                                             </constraints>
@@ -173,7 +173,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijD-Je-g2N">
-                                            <rect key="frame" x="175" y="0.0" width="47.5" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="46.5" height="30"/>
                                             <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="22"/>
                                             <color key="textColor" red="0.90920567510000005" green="0.8944724798" blue="0.87451332810000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
@@ -181,10 +181,10 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="A7j-IP-3Nc">
-                                    <rect key="frame" x="60.5" y="72" width="159.5" height="30"/>
+                                    <rect key="frame" x="15.5" y="72" width="146.5" height="30"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnp-yi-fLS">
-                                            <rect key="frame" x="0.0" y="0.0" width="104" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="diq-0w-RRR"/>
                                             </constraints>
@@ -193,7 +193,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-7C-Syg">
-                                            <rect key="frame" x="110" y="0.0" width="49.5" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="46.5" height="30"/>
                                             <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="22"/>
                                             <color key="textColor" red="0.83921568629999999" green="0.81568627449999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -201,10 +201,10 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="68E-V1-iTi">
-                                    <rect key="frame" x="20" y="108" width="240.5" height="30"/>
+                                    <rect key="frame" x="15.5" y="108" width="226" height="30"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wind Speed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYp-0P-wo0">
-                                            <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="127" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="dTl-5t-Q4b"/>
                                             </constraints>
@@ -213,7 +213,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.5 mph" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUQ-Lv-NZZ">
-                                            <rect key="frame" x="146" y="0.0" width="94.5" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="93" height="30"/>
                                             <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="22"/>
                                             <color key="textColor" red="0.83921568629999999" green="0.81568627449999997" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -221,7 +221,7 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymj-H1-eTP">
-                                    <rect key="frame" x="0.0" y="144" width="280" height="16"/>
+                                    <rect key="frame" x="-124.5" y="144" width="280" height="16"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="16" id="Q1A-yJ-JUs"/>

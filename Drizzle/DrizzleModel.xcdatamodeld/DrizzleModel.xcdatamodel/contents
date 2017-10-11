@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CurrentWeather" representedClassName="CurrentWeatherMO" syncable="YES">
+        <attribute name="apparentTemperature" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="icon" attributeType="String" syncable="YES"/>
+        <attribute name="summary" attributeType="String" syncable="YES"/>
+        <attribute name="temperature" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="currentWeather" inverseEntity="Location" syncable="YES"/>
+    </entity>
+    <entity name="DailyWeather" representedClassName="DailyWeatherMO" syncable="YES">
+        <attribute name="humidity" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="icon" attributeType="String" syncable="YES"/>
+        <attribute name="precipProbability" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="precipType" attributeType="String" syncable="YES"/>
+        <attribute name="summary" attributeType="String" syncable="YES"/>
+        <attribute name="temperatureMax" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="temperatureMin" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="time" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="windSpeed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="dailyWeather" inverseEntity="Location" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="LocationMO" syncable="YES">
+        <attribute name="address" attributeType="String" syncable="YES"/>
+        <attribute name="isHome" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastFetchTime" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="currentWeather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CurrentWeather" inverseName="location" inverseEntity="CurrentWeather" syncable="YES"/>
+        <relationship name="dailyWeather" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DailyWeather" inverseName="location" inverseEntity="DailyWeather" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CurrentWeather" positionX="-290" positionY="-147" width="128" height="120"/>
+        <element name="DailyWeather" positionX="-288" positionY="-0" width="128" height="193"/>
+        <element name="Location" positionX="-576" positionY="-126" width="128" height="150"/>
+    </elements>
+</model>

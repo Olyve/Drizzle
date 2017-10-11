@@ -1,0 +1,11 @@
+{
+  "time": 987654321,
+  "summary": "Overcast",
+  "icon": "cloudy",
+  "temp_min": 58,
+  "temp_max": 72,
+  "precip_probability": 0.0,
+  "precip_type": "",
+  "humidity": 0.72,
+  "wind_speed": 1.34
+}

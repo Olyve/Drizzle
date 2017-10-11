@@ -6,7 +6,8 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
-import RxSwift
+import Bond
+import CoreData
 import SwiftyJSON
 import UIKit
 
@@ -22,18 +23,17 @@ class HomeViewController: UIViewController {
   @IBOutlet weak var humidityLabel: UILabel!
   @IBOutlet weak var windSpeedLabel: UILabel!
   
-  fileprivate let viewModel: HomeViewModelType
-  fileprivate let weatherManager: WeatherManagerType
+  private let managedContext: NSManagedObjectContext!
+  private let viewModel: HomeViewModelType
+  private var settingsButton: UIBarButtonItem!
+  private var homeLocationButton: UIBarButtonItem!
+  private var temp_measure = Observable<String>("")
+  private var windSpeed_measure = Observable<String>("")
   
-  fileprivate let disposeBag = DisposeBag()
-  fileprivate var settingsButton: UIBarButtonItem!
-  fileprivate var homeLocationButton: UIBarButtonItem!
-  
-  init(viewModel: HomeViewModelType = HomeViewModel(),
-       weatherManager: WeatherManagerType = WeatherManager())
+  init(managedContext: NSManagedObjectContext)
   {
-    self.viewModel = viewModel
-    self.weatherManager = weatherManager
+    self.managedContext = managedContext
+    self.viewModel = HomeViewModel(managedContext: self.managedContext)
     
     super.init(nibName: "HomeViewController", bundle: nil)
     
@@ -46,6 +46,13 @@ class HomeViewController: UIViewController {
                                          target: self,
                                          action: #selector(showChooseLocation))
     
+    viewModel.useMetric
+      .map { $0 ? "ºC" : "ºF" }
+      .bind(to: temp_measure)
+    
+    viewModel.useMetric
+      .map { $0 ? "m/s" : "mph" }
+      .bind(to: windSpeed_measure)
   }
   
   required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -69,8 +76,9 @@ extension HomeViewController {
   {
     super.viewWillAppear(animated)
     
-    fetchWeather()
     navigationController?.navigationBar.barStyle = .black
+    
+    viewModel.updateWeatherInfo()
   }
   
   override func viewWillDisappear(_ animated: Bool)
@@ -85,60 +93,55 @@ extension HomeViewController {
 fileprivate extension HomeViewController {
   func setBindings()
   {
-    viewModel.homeLocation.asObservable()
-      .subscribe(onNext: { self.showChooseLocationIfNoHome(location: $0) })
-      .addDisposableTo(disposeBag)
+    viewModel.homeLocation
+      .observeNext { [weak self] in self?.showChooseLocationIfNoHome(location: $0) }
+      .dispose(in: bag)
     
-    viewModel.homeLocation.asObservable()
-      .subscribe(onNext: { location in
+    viewModel.homeLocation
+      .observeNext { [weak self] location in
         if let location = location {
-          self.addressLabel.text = location.formattedAddress
-          self.weatherManager.getWeatherForHome()
+          self?.addressLabel.text = location.address
         }
-      })
-      .addDisposableTo(disposeBag)
+      }
+      .dispose(in: bag)
+    
     
     setWeatherBindings()
   }
   
   func setWeatherBindings()
   {
-    weatherManager.currentWeather.asObservable()
-      .subscribe(onNext: { json in
-        if let json = json {
-          self.summaryLabel.text = json["summary"].stringValue
-          self.temperatureLabel.text = String(json["temperature"].intValue) + "°F"
-          self.apparentTemperatureLabel.text = String(json["apparentTemperature"].intValue) + "°F"
-          
-          let icon = self.weatherManager.getWeatherIcon()
-          self.weatherIcon.image = UIImage(named: icon) ?? UIImage(named: "clear-day")
-        }
-        else {
-          guard let json = json
-            else { return NSLog("Error: Unable to get current weather data.") }
-          
-          NSLog("Error: Unable to get current weather from JSON: \(json)")
-        }
-      })
-      .addDisposableTo(disposeBag)
-    
-    weatherManager.dailyWeather.asObservable()
-      .subscribe(onNext: { json in
-        guard let json = json
-          else { return NSLog("Error: Unable to parse daily weather data.") }
-        
-        let data = json["data"][0]
-            
-        self.dailyLowLabel.text = String(data["temperatureMin"].intValue) + "°F"
-        self.dailyHighLabel.text = String(data["temperatureMax"].intValue) + "°F"
-        self.precipChanceLabel.text = String(data["precipProbability"].doubleValue * 100) + "%"
-        self.humidityLabel.text = String(data["humidity"].doubleValue * 100) + "%"
-        self.windSpeedLabel.text = String(data["windSpeed"].doubleValue) + " mph"
-      })
-      .addDisposableTo(disposeBag)
+    // Current Weather
+    viewModel.homeLocation.observeNext { [weak self] homeLocation in
+      guard let location = homeLocation,
+            let currentWeather = location.currentWeather,
+            let dailyWeather = location.dailyWeather?[0] as? DailyWeatherMO
+        else { log.warning("Warning: Unable to get weather for: \(String(describing: homeLocation))"); return }
+      
+      self?.bindCurrentWeather(with: currentWeather)
+      self?.bindDailyWeather(with: dailyWeather)
+    }
+    .dispose(in: bag)
   }
   
-  func showChooseLocationIfNoHome(location: Location?)
+  func bindCurrentWeather(with data: CurrentWeatherMO)
+  {
+    self.summaryLabel.text = data.summary
+    self.temperatureLabel.text = "\(data.temperature)\(temp_measure.value)"
+    self.apparentTemperatureLabel.text = "\(data.apparentTemperature)\(temp_measure.value)"
+    self.weatherIcon.image = UIImage(named: data.icon!) ?? UIImage(named: "clear-day")
+  }
+  
+  func bindDailyWeather(with data: DailyWeatherMO)
+  {
+    self.dailyLowLabel.text = "\(data.temperatureMin)\(temp_measure.value)"
+    self.dailyHighLabel.text = "\(data.temperatureMax)\(temp_measure.value)"
+    self.precipChanceLabel.text = "\(data.precipProbability * 100)%"
+    self.humidityLabel.text = "\(data.humidity * 100)%"
+    self.windSpeedLabel.text = "\(data.windSpeed) \(windSpeed_measure.value)"
+  }
+  
+  func showChooseLocationIfNoHome(location: LocationMO?)
   {
     if location == nil {
       showChooseLocation()
@@ -153,12 +156,7 @@ fileprivate extension HomeViewController {
   
   @objc func showChooseLocation()
   {
-    let chooseLocationViewController = ChooseLocationViewController()
+    let chooseLocationViewController = ChooseLocationViewController(managedContext: managedContext)
     navigationController?.pushViewController(chooseLocationViewController, animated: true)
-  }
-  
-  func fetchWeather()
-  {
-    weatherManager.getWeatherForHome()
   }
 }

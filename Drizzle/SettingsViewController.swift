@@ -6,23 +6,20 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
+import Bond
+import ReactiveKit
 import UIKit
-import UserNotifications
 
 class SettingsViewController: UIViewController {
-  @IBOutlet weak var alarmPicker: UIDatePicker!
-  @IBAction func confirmTimeTapped(_ sender: UIButton)
-  {
-    // Notification are not working as intended at the moment.
-    // FIXME: Notifications
-    //setNotificationTimeAndHandleAuthorization()
-  }
+  @IBOutlet weak var unitLabel: UILabel!
+  @IBOutlet weak var unitSwitch: UISwitch!
   
-  fileprivate let weatherManager: WeatherManagerType
+  private let viewModel: SettingsViewModelType
+  private let disposeBag = DisposeBag()
   
-  init(weatherManager: WeatherManagerType = WeatherManager())
+  init(viewModel: SettingsViewModelType = SettingsViewModel())
   {
-    self.weatherManager = weatherManager
+    self.viewModel = viewModel
     
     super.init(nibName: "SettingsViewController", bundle: nil)
   }
@@ -41,16 +38,16 @@ extension SettingsViewController {
     navigationController?.navigationBar.barStyle = .black
     navigationController?.navigationBar.tintColor = UIColor.drizzleWhite
     navigationController?.navigationBar.titleTextAttributes = [
-      NSForegroundColorAttributeName: UIColor.drizzleWhite,
-      NSFontAttributeName: UIFont(name: "Quicksand-Regular", size: 20)!
+      NSAttributedStringKey.foregroundColor: UIColor.drizzleWhite,
+      NSAttributedStringKey.font: UIFont(name: "Quicksand-Regular", size: 20)!
     ]
     
     navigationItem.title = "Settings"
     
-    alarmPicker.setValue(UIColor.drizzleWhite, forKey: "textColor")
-    alarmPicker.datePickerMode = .dateAndTime
-    alarmPicker.datePickerMode = .time
-    alarmPicker.minuteInterval = 5
+    // TODO: This feels wrong settings the reactive bind every time the view will appear,
+    // It may even be causing a memory leak. Added disposing of the bind on disappear to maybe fix
+    unitSwitch.isOn = UserDefaults.standard.value(forKey: "useMetric") as? Bool ?? false
+    unitSwitch.reactive.isOn.bind(to: viewModel.useMetric).dispose(in: disposeBag)
   }
   
   override func viewWillDisappear(_ animated: Bool)
@@ -58,64 +55,6 @@ extension SettingsViewController {
     super.viewWillDisappear(animated)
     
     navigationController?.navigationBar.barStyle = .default
+    disposeBag.dispose()
   }
 }
-
-// MARK: - Notification Settings
-fileprivate extension SettingsViewController {
-  func setNotificationTimeAndHandleAuthorization()
-  {
-    UNUserNotificationCenter.current().getNotificationSettings { notificationSettings in
-      switch notificationSettings.authorizationStatus {
-      case .notDetermined:
-        self.requestAuthorization(completionHandler: { (success) in
-          guard success else { return }
-          
-          self.scheduleLocalNotification()
-        })
-      case .authorized:
-        self.scheduleLocalNotification()
-      case.denied:
-        NSLog("Error: Application not authorized to display notifications")
-      }
-    }
-  }
-  
-  func requestAuthorization(completionHandler: @escaping (_ success: Bool) -> ()) {
-    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (success, error) in
-      if let error = error {
-        NSLog("Request Authorization Failed (\(error), \(error.localizedDescription))")
-      }
-      
-      completionHandler(success)
-    }
-  }
-  
-  func scheduleLocalNotification()
-  {
-    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["drizzle_local_notification"])
-    
-    let notificationContent = UNMutableNotificationContent()
-    notificationContent.title = "Daily Weather Forecast"
-    notificationContent.body = UserDefaults.standard.value(forKey: "notification_content") as? String ?? "Error: Unable to grab forecast data, sorry!"
-    
-    let dateComponenets = alarmPicker.calendar.dateComponents([.hour, .minute], from: alarmPicker.date)
-    
-    UserDefaults.standard.set(dateComponenets.hour, forKey: "notification_hour")
-    UserDefaults.standard.set(dateComponenets.minute, forKey: "notification_hour")
-    
-    let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponenets, repeats: true)
-    
-    let notificationRequest = UNNotificationRequest(identifier: "drizzle_local_notification",
-                                                    content: notificationContent,
-                                                    trigger: notificationTrigger)
-    
-    UNUserNotificationCenter.current().add(notificationRequest) { (error) in
-      if let error = error {
-        NSLog("Unable to add notification request (\(error), \(error.localizedDescription))")
-      }
-    }
-  }
-}
-
-

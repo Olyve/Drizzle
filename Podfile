@@ -4,9 +4,10 @@ platform :ios, '10.0'
 target 'Drizzle' do
   use_frameworks!
 
+  pod 'Bond'
+  pod 'Moya'
   pod 'PromiseKit'
-  pod 'RxSwift'
-  pod 'RxCocoa'
+  pod 'SwiftyBeaver'
   pod 'SwiftyJSON'
 
   target 'DrizzleTests' do
@@ -14,8 +15,6 @@ target 'Drizzle' do
     
     pod 'Nimble'
     pod 'Quick'
-    pod 'RxBlocking'
-    pod 'RxTest'
   end
 
 end

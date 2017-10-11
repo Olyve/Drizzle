@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22054A865BC2F6957B698EDF /* Pods_DrizzleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE1B03B33B0640E3550DA8F /* Pods_DrizzleTests.framework */; };
+		220D11B81ED20B8500BDBF1A /* Location.json in Resources */ = {isa = PBXBuildFile; fileRef = 220D11B71ED20B8500BDBF1A /* Location.json */; };
+		220D11C01ED35CF500BDBF1A /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D11BF1ED35CF500BDBF1A /* MockNetworkClient.swift */; };
+		220D11C41ED35E3900BDBF1A /* FetchWeatherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D11C31ED35E3900BDBF1A /* FetchWeatherSpec.swift */; };
+		220D11C81ED3711A00BDBF1A /* DailyWeatherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D11C71ED3711A00BDBF1A /* DailyWeatherSpec.swift */; };
+		220D11CA1ED372DC00BDBF1A /* DailyWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 220D11C91ED372DC00BDBF1A /* DailyWeather.json */; };
 		221CD1021E9D47B100D01826 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221CD1011E9D47B100D01826 /* HomeViewController.xib */; };
+		221D45DB1ED4B98600DF8515 /* DailyWeatherAlt.json in Resources */ = {isa = PBXBuildFile; fileRef = 221D45DA1ED4B98600DF8515 /* DailyWeatherAlt.json */; };
+		224E96841F79757900AA7A6E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224E96831F79757900AA7A6E /* APIService.swift */; };
 		2250DFAD1EA0008C00F8FC0A /* ChooseLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFAC1EA0008C00F8FC0A /* ChooseLocationViewModel.swift */; };
 		2250DFAF1EA00B7500F8FC0A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */; };
 		2250DFB11EA52B0400F8FC0A /* LocationManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFB01EA52B0400F8FC0A /* LocationManagerSpec.swift */; };
-		2250DFB91EA5638E00F8FC0A /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250DFB81EA5638E00F8FC0A /* NetworkClient.swift */; };
+		225445D51F79BB9D0075A42A /* DrizzleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 225445D31F79BB9D0075A42A /* DrizzleModel.xcdatamodeld */; };
 		228A2A3D1E9D3FE600D991E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */; };
 		228A2A441E9D3FE600D991E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A431E9D3FE600D991E5 /* Assets.xcassets */; };
 		228A2A471E9D3FE600D991E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 228A2A451E9D3FE600D991E5 /* LaunchScreen.storyboard */; };
@@ -25,17 +31,29 @@
 		228DAD541E9EADF80019F867 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DAD521E9EADF80019F867 /* ChooseLocationViewController.swift */; };
 		228DAD551E9EADF80019F867 /* ChooseLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228DAD531E9EADF80019F867 /* ChooseLocationViewController.xib */; };
 		228DAD571E9EBC720019F867 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228DAD561E9EBC720019F867 /* Buttons.swift */; };
+		22A4C7DC1F87FAA400CC5971 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4C7DB1F87FAA400CC5971 /* SettingsViewModel.swift */; };
+		22B00BDB1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00BDA1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift */; };
+		22B00BDF1ECA61A700B8BB46 /* MockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */; };
 		22B0A4CF1EC213ED0024A34F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4CD1EC213ED0024A34F /* SettingsViewController.swift */; };
 		22B0A4D01EC213ED0024A34F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */; };
-		22B0A4D21EC243A70024A34F /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4D11EC243A70024A34F /* WeatherManager.swift */; };
-		22B0A4D41EC243F70024A34F /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B0A4D31EC243F70024A34F /* CurrentWeather.swift */; };
+		22C7F0151ECCDE1200A5CD91 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */; };
+		22C7F0171ECCDEE200A5CD91 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C7F0161ECCDEE200A5CD91 /* Utilities.swift */; };
+		22C7F0191ECCE24200A5CD91 /* JSONConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C7F0181ECCE24200A5CD91 /* JSONConvertable.swift */; };
 		22D4F3211E9D4E6200AF8F7F /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */; };
 		22D4F3221E9D4E6200AF8F7F /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */; };
 		22D4F3231E9D4E6200AF8F7F /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31C1E9D4E5B00AF8F7F /* Quicksand-Italic.otf */; };
 		22D4F3241E9D4E6200AF8F7F /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31D1E9D4E5B00AF8F7F /* Quicksand-Light.otf */; };
 		22D4F3251E9D4E6200AF8F7F /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31E1E9D4E5B00AF8F7F /* Quicksand-LightItalic.otf */; };
 		22D4F3261E9D4E6200AF8F7F /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22D4F31F1E9D4E5B00AF8F7F /* Quicksand-Regular.otf */; };
-		AA43535FB5DBF25037A83638 /* Pods_Drizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE8B883E92664C544F0B6739 /* Pods_Drizzle.framework */; };
+		22F28B6E1F79C870009B316E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F28B6D1F79C870009B316E /* CoreDataStack.swift */; };
+		22F28B821F7AC10F009B316E /* LocationMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F28B7C1F7AC10F009B316E /* LocationMO+CoreDataClass.swift */; };
+		22F28B831F7AC10F009B316E /* LocationMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F28B7D1F7AC10F009B316E /* LocationMO+CoreDataProperties.swift */; };
+		22F28B841F7AC10F009B316E /* CurrentWeatherMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F28B7E1F7AC10F009B316E /* CurrentWeatherMO+CoreDataClass.swift */; };
+		22F28B851F7AC10F009B316E /* CurrentWeatherMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F28B7F1F7AC10F009B316E /* CurrentWeatherMO+CoreDataProperties.swift */; };
+		22F28B861F7AC10F009B316E /* DailyWeatherMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F28B801F7AC10F009B316E /* DailyWeatherMO+CoreDataClass.swift */; };
+		22F28B871F7AC10F009B316E /* DailyWeatherMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F28B811F7AC10F009B316E /* DailyWeatherMO+CoreDataProperties.swift */; };
+		45EEFDA64C9CD8032339B649 /* Pods_Drizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6496F2FA1BBC9124477FDA58 /* Pods_Drizzle.framework */; };
+		9DBC8FB5A856620262A68EC6 /* Pods_DrizzleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49CFB4E4045933815A97B8EE /* Pods_DrizzleTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,11 +67,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220D11B71ED20B8500BDBF1A /* Location.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Location.json; sourceTree = "<group>"; };
+		220D11BF1ED35CF500BDBF1A /* MockNetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
+		220D11C31ED35E3900BDBF1A /* FetchWeatherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchWeatherSpec.swift; sourceTree = "<group>"; };
+		220D11C71ED3711A00BDBF1A /* DailyWeatherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyWeatherSpec.swift; sourceTree = "<group>"; };
+		220D11C91ED372DC00BDBF1A /* DailyWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DailyWeather.json; sourceTree = "<group>"; };
 		221CD1011E9D47B100D01826 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		221D45DA1ED4B98600DF8515 /* DailyWeatherAlt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DailyWeatherAlt.json; sourceTree = "<group>"; };
+		224E96831F79757900AA7A6E /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2250DFAC1EA0008C00F8FC0A /* ChooseLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewModel.swift; sourceTree = "<group>"; };
 		2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		2250DFB01EA52B0400F8FC0A /* LocationManagerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerSpec.swift; sourceTree = "<group>"; };
-		2250DFB81EA5638E00F8FC0A /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		225445D41F79BB9D0075A42A /* DrizzleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DrizzleModel.xcdatamodel; sourceTree = "<group>"; };
 		228A2A391E9D3FE600D991E5 /* Drizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		228A2A431E9D3FE600D991E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,22 +96,33 @@
 		228DAD521E9EADF80019F867 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		228DAD531E9EADF80019F867 /* ChooseLocationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseLocationViewController.xib; sourceTree = "<group>"; };
 		228DAD561E9EBC720019F867 /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		22A4C7DB1F87FAA400CC5971 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		22B00BDA1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherSpec.swift; sourceTree = "<group>"; };
+		22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLocationManager.swift; sourceTree = "<group>"; };
 		22B0A4CD1EC213ED0024A34F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		22B0A4CE1EC213ED0024A34F /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		22B0A4D11EC243A70024A34F /* WeatherManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
-		22B0A4D31EC243F70024A34F /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CurrentWeather.json; sourceTree = "<group>"; };
+		22C7F0161ECCDEE200A5CD91 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		22C7F0181ECCE24200A5CD91 /* JSONConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConvertable.swift; sourceTree = "<group>"; };
 		22D4F31A1E9D4E5B00AF8F7F /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
 		22D4F31B1E9D4E5B00AF8F7F /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
 		22D4F31C1E9D4E5B00AF8F7F /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Italic.otf"; sourceTree = "<group>"; };
 		22D4F31D1E9D4E5B00AF8F7F /* Quicksand-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.otf"; sourceTree = "<group>"; };
 		22D4F31E1E9D4E5B00AF8F7F /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
 		22D4F31F1E9D4E5B00AF8F7F /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.otf"; sourceTree = "<group>"; };
-		3E09C8F8B1368B5BF446F61F /* Pods-Drizzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drizzle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drizzle/Pods-Drizzle.release.xcconfig"; sourceTree = "<group>"; };
-		5D97BA4F728D88F5F660A695 /* Pods-DrizzleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrizzleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DrizzleTests/Pods-DrizzleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B4672317DAF76FE343F50842 /* Pods-DrizzleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrizzleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DrizzleTests/Pods-DrizzleTests.release.xcconfig"; sourceTree = "<group>"; };
-		D7DC59E937DC8E2B6AF51BA6 /* Pods-Drizzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drizzle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drizzle/Pods-Drizzle.debug.xcconfig"; sourceTree = "<group>"; };
-		DEE1B03B33B0640E3550DA8F /* Pods_DrizzleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrizzleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE8B883E92664C544F0B6739 /* Pods_Drizzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drizzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22F28B6D1F79C870009B316E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		22F28B7C1F7AC10F009B316E /* LocationMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		22F28B7D1F7AC10F009B316E /* LocationMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		22F28B7E1F7AC10F009B316E /* CurrentWeatherMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentWeatherMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		22F28B7F1F7AC10F009B316E /* CurrentWeatherMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrentWeatherMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		22F28B801F7AC10F009B316E /* DailyWeatherMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyWeatherMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		22F28B811F7AC10F009B316E /* DailyWeatherMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyWeatherMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3D3173230D5E082A37093544 /* Pods-DrizzleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrizzleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DrizzleTests/Pods-DrizzleTests.release.xcconfig"; sourceTree = "<group>"; };
+		4786BAA82527C80D1AF8105C /* Pods-DrizzleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrizzleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DrizzleTests/Pods-DrizzleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		49CFB4E4045933815A97B8EE /* Pods_DrizzleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrizzleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6496F2FA1BBC9124477FDA58 /* Pods_Drizzle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drizzle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4CDFA7A29E8C384262DBEFA /* Pods-Drizzle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drizzle.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drizzle/Pods-Drizzle.release.xcconfig"; sourceTree = "<group>"; };
+		E9AF8A9F20C740DCA2B5288C /* Pods-Drizzle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drizzle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drizzle/Pods-Drizzle.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA43535FB5DBF25037A83638 /* Pods_Drizzle.framework in Frameworks */,
+				45EEFDA64C9CD8032339B649 /* Pods_Drizzle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,18 +138,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22054A865BC2F6957B698EDF /* Pods_DrizzleTests.framework in Frameworks */,
+				9DBC8FB5A856620262A68EC6 /* Pods_DrizzleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220D11BD1ED3550E00BDBF1A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				224E96831F79757900AA7A6E /* APIService.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		220D11C11ED35E1600BDBF1A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				220D11C21ED35E1D00BDBF1A /* Service Objects */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		220D11C21ED35E1D00BDBF1A /* Service Objects */ = {
+			isa = PBXGroup;
+			children = (
+				220D11C31ED35E3900BDBF1A /* FetchWeatherSpec.swift */,
+			);
+			name = "Service Objects";
+			sourceTree = "<group>";
+		};
 		2250DFAB1EA0006B00F8FC0A /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */,
 				2250DFAC1EA0008C00F8FC0A /* ChooseLocationViewModel.swift */,
+				228A2A611E9D44EA00D991E5 /* HomeViewModel.swift */,
+				22A4C7DB1F87FAA400CC5971 /* SettingsViewModel.swift */,
 			);
 			name = "View Models";
 			sourceTree = "<group>";
@@ -121,8 +182,15 @@
 		2250DFB21EA52B2500F8FC0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				22F28B7C1F7AC10F009B316E /* LocationMO+CoreDataClass.swift */,
+				22F28B7D1F7AC10F009B316E /* LocationMO+CoreDataProperties.swift */,
+				22F28B7E1F7AC10F009B316E /* CurrentWeatherMO+CoreDataClass.swift */,
+				22F28B7F1F7AC10F009B316E /* CurrentWeatherMO+CoreDataProperties.swift */,
+				22F28B801F7AC10F009B316E /* DailyWeatherMO+CoreDataClass.swift */,
+				22F28B811F7AC10F009B316E /* DailyWeatherMO+CoreDataProperties.swift */,
+				22F28B6D1F79C870009B316E /* CoreDataStack.swift */,
 				228DAD3F1E9D65840019F867 /* Location.swift */,
-				22B0A4D31EC243F70024A34F /* CurrentWeather.swift */,
+				225445D31F79BB9D0075A42A /* DrizzleModel.xcdatamodeld */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -130,6 +198,8 @@
 		2250DFB31EA5339A00F8FC0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				22B00BDA1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift */,
+				220D11C71ED3711A00BDBF1A /* DailyWeatherSpec.swift */,
 				228DAD461E9D8AE10019F867 /* LocationSpec.swift */,
 			);
 			name = Models;
@@ -145,6 +215,8 @@
 		2250DFB51EA533CC00F8FC0A /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				22B00BDE1ECA61A700B8BB46 /* MockLocationManager.swift */,
+				220D11BF1ED35CF500BDBF1A /* MockNetworkClient.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -155,8 +227,8 @@
 				228A2A3B1E9D3FE600D991E5 /* Drizzle */,
 				228A2A501E9D3FE600D991E5 /* DrizzleTests */,
 				228A2A3A1E9D3FE600D991E5 /* Products */,
-				C2BC2D076007E13E495C95B2 /* Pods */,
-				F780E42FA0EEE02929DA7F4A /* Frameworks */,
+				C0369E59BB66DDE74AE36BD4 /* Pods */,
+				F1C5D8E9C24116480BEF7F8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,13 +247,13 @@
 				228A2A3C1E9D3FE600D991E5 /* AppDelegate.swift */,
 				228DAD561E9EBC720019F867 /* Buttons.swift */,
 				228DAD4F1E9E92400019F867 /* ColorUtilities.swift */,
+				22C7F0181ECCE24200A5CD91 /* JSONConvertable.swift */,
 				2250DFAE1EA00B7500F8FC0A /* LocationManager.swift */,
-				22B0A4D11EC243A70024A34F /* WeatherManager.swift */,
 				2250DFB21EA52B2500F8FC0A /* Models */,
+				220D11BD1ED3550E00BDBF1A /* Networking */,
 				228A2A601E9D40A800D991E5 /* Resources */,
 				228DAD511E9EADCF0019F867 /* View Controllers */,
 				2250DFAB1EA0006B00F8FC0A /* View Models */,
-				2250DFB81EA5638E00F8FC0A /* NetworkClient.swift */,
 			);
 			path = Drizzle;
 			sourceTree = "<group>";
@@ -190,8 +262,11 @@
 			isa = PBXGroup;
 			children = (
 				2250DFB01EA52B0400F8FC0A /* LocationManagerSpec.swift */,
+				22C7F0161ECCDEE200A5CD91 /* Utilities.swift */,
+				22C7F0131ECCDDF900A5CD91 /* JSON */,
 				2250DFB51EA533CC00F8FC0A /* Mocks */,
 				2250DFB31EA5339A00F8FC0A /* Models */,
+				220D11C11ED35E1600BDBF1A /* Networking */,
 				228DAD481E9D8B9B0019F867 /* Resources */,
 				2250DFB41EA533A600F8FC0A /* View Models */,
 			);
@@ -237,22 +312,33 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
-		C2BC2D076007E13E495C95B2 /* Pods */ = {
+		22C7F0131ECCDDF900A5CD91 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				D7DC59E937DC8E2B6AF51BA6 /* Pods-Drizzle.debug.xcconfig */,
-				3E09C8F8B1368B5BF446F61F /* Pods-Drizzle.release.xcconfig */,
-				5D97BA4F728D88F5F660A695 /* Pods-DrizzleTests.debug.xcconfig */,
-				B4672317DAF76FE343F50842 /* Pods-DrizzleTests.release.xcconfig */,
+				22C7F0141ECCDE1200A5CD91 /* CurrentWeather.json */,
+				220D11C91ED372DC00BDBF1A /* DailyWeather.json */,
+				221D45DA1ED4B98600DF8515 /* DailyWeatherAlt.json */,
+				220D11B71ED20B8500BDBF1A /* Location.json */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		C0369E59BB66DDE74AE36BD4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9AF8A9F20C740DCA2B5288C /* Pods-Drizzle.debug.xcconfig */,
+				A4CDFA7A29E8C384262DBEFA /* Pods-Drizzle.release.xcconfig */,
+				4786BAA82527C80D1AF8105C /* Pods-DrizzleTests.debug.xcconfig */,
+				3D3173230D5E082A37093544 /* Pods-DrizzleTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F780E42FA0EEE02929DA7F4A /* Frameworks */ = {
+		F1C5D8E9C24116480BEF7F8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EE8B883E92664C544F0B6739 /* Pods_Drizzle.framework */,
-				DEE1B03B33B0640E3550DA8F /* Pods_DrizzleTests.framework */,
+				6496F2FA1BBC9124477FDA58 /* Pods_Drizzle.framework */,
+				49CFB4E4045933815A97B8EE /* Pods_DrizzleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -270,6 +356,7 @@
 				228A2A371E9D3FE600D991E5 /* Resources */,
 				99345567A589A2EF2C2E2C32 /* [CP] Embed Pods Frameworks */,
 				799CA13F309D1FF1F4DC8627 /* [CP] Copy Pods Resources */,
+				22F28B6F1F7AB787009B316E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -308,12 +395,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Sam Galizia";
 				TargetAttributes = {
 					228A2A381E9D3FE600D991E5 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 5J68VQM656;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -324,7 +412,7 @@
 					228A2A4C1E9D3FE600D991E5 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = 5J68VQM656;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 228A2A381E9D3FE600D991E5;
 					};
@@ -373,25 +461,45 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				221D45DB1ED4B98600DF8515 /* DailyWeatherAlt.json in Resources */,
+				220D11CA1ED372DC00BDBF1A /* DailyWeather.json in Resources */,
+				220D11B81ED20B8500BDBF1A /* Location.json in Resources */,
+				22C7F0151ECCDE1200A5CD91 /* CurrentWeather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		763DF366369473EE48CA9930 /* [CP] Check Pods Manifest.lock */ = {
+		22F28B6F1F7AB787009B316E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nfind \"${SRCROOT}/Drizzle\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+		763DF366369473EE48CA9930 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DrizzleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		799CA13F309D1FF1F4DC8627 /* [CP] Copy Pods Resources */ = {
@@ -415,9 +523,28 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Drizzle/Pods-Drizzle-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
+				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -430,9 +557,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DrizzleTests/Pods-DrizzleTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -460,13 +592,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Drizzle-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -477,10 +612,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				228DAD571E9EBC720019F867 /* Buttons.swift in Sources */,
-				22B0A4D21EC243A70024A34F /* WeatherManager.swift in Sources */,
-				22B0A4D41EC243F70024A34F /* CurrentWeather.swift in Sources */,
-				2250DFB91EA5638E00F8FC0A /* NetworkClient.swift in Sources */,
+				22F28B821F7AC10F009B316E /* LocationMO+CoreDataClass.swift in Sources */,
+				22F28B851F7AC10F009B316E /* CurrentWeatherMO+CoreDataProperties.swift in Sources */,
 				22B0A4CF1EC213ED0024A34F /* SettingsViewController.swift in Sources */,
+				22C7F0191ECCE24200A5CD91 /* JSONConvertable.swift in Sources */,
+				22F28B861F7AC10F009B316E /* DailyWeatherMO+CoreDataClass.swift in Sources */,
+				22F28B871F7AC10F009B316E /* DailyWeatherMO+CoreDataProperties.swift in Sources */,
+				225445D51F79BB9D0075A42A /* DrizzleModel.xcdatamodeld in Sources */,
+				224E96841F79757900AA7A6E /* APIService.swift in Sources */,
+				22F28B831F7AC10F009B316E /* LocationMO+CoreDataProperties.swift in Sources */,
+				22F28B841F7AC10F009B316E /* CurrentWeatherMO+CoreDataClass.swift in Sources */,
+				22F28B6E1F79C870009B316E /* CoreDataStack.swift in Sources */,
 				228A2A3D1E9D3FE600D991E5 /* AppDelegate.swift in Sources */,
 				228A2A621E9D44EA00D991E5 /* HomeViewModel.swift in Sources */,
 				228DAD541E9EADF80019F867 /* ChooseLocationViewController.swift in Sources */,
@@ -489,6 +631,7 @@
 				2250DFAD1EA0008C00F8FC0A /* ChooseLocationViewModel.swift in Sources */,
 				228A2A5E1E9D405200D991E5 /* HomeViewController.swift in Sources */,
 				2250DFAF1EA00B7500F8FC0A /* LocationManager.swift in Sources */,
+				22A4C7DC1F87FAA400CC5971 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,8 +639,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22C7F0171ECCDEE200A5CD91 /* Utilities.swift in Sources */,
+				220D11C01ED35CF500BDBF1A /* MockNetworkClient.swift in Sources */,
+				220D11C41ED35E3900BDBF1A /* FetchWeatherSpec.swift in Sources */,
+				22B00BDF1ECA61A700B8BB46 /* MockLocationManager.swift in Sources */,
 				228DAD471E9D8AE10019F867 /* LocationSpec.swift in Sources */,
+				22B00BDB1ECA4F9A00B8BB46 /* CurrentWeatherSpec.swift in Sources */,
 				2250DFB11EA52B0400F8FC0A /* LocationManagerSpec.swift in Sources */,
+				220D11C81ED3711A00BDBF1A /* DailyWeatherSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +682,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -541,7 +692,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -583,7 +738,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -591,7 +748,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -618,7 +779,7 @@
 		};
 		228A2A571E9D3FE600D991E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7DC59E937DC8E2B6AF51BA6 /* Pods-Drizzle.debug.xcconfig */;
+			baseConfigurationReference = E9AF8A9F20C740DCA2B5288C /* Pods-Drizzle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -629,13 +790,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.samgalizia.Drizzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		228A2A581E9D3FE600D991E5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E09C8F8B1368B5BF446F61F /* Pods-Drizzle.release.xcconfig */;
+			baseConfigurationReference = A4CDFA7A29E8C384262DBEFA /* Pods-Drizzle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -646,13 +808,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.samgalizia.Drizzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		228A2A5A1E9D3FE600D991E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D97BA4F728D88F5F660A695 /* Pods-DrizzleTests.debug.xcconfig */;
+			baseConfigurationReference = 4786BAA82527C80D1AF8105C /* Pods-DrizzleTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -664,14 +827,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DrizzleTests/DrizzleTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drizzle.app/Drizzle";
 			};
 			name = Debug;
 		};
 		228A2A5B1E9D3FE600D991E5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4672317DAF76FE343F50842 /* Pods-DrizzleTests.release.xcconfig */;
+			baseConfigurationReference = 3D3173230D5E082A37093544 /* Pods-DrizzleTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -682,7 +846,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.samgalizia.DrizzleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DrizzleTests/DrizzleTests-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drizzle.app/Drizzle";
 			};
 			name = Release;
@@ -718,6 +883,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		225445D31F79BB9D0075A42A /* DrizzleModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				225445D41F79BB9D0075A42A /* DrizzleModel.xcdatamodel */,
+			);
+			currentVersion = 225445D41F79BB9D0075A42A /* DrizzleModel.xcdatamodel */;
+			path = DrizzleModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 228A2A311E9D3FE600D991E5 /* Project object */;
 }

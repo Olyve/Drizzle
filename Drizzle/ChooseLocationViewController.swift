@@ -6,9 +6,8 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
-import Foundation
-import RxCocoa
-import RxSwift
+import Bond
+import CoreData
 import SwiftyJSON
 import UIKit
 
@@ -18,17 +17,17 @@ class ChooseLocationViewController: UIViewController {
   @IBOutlet weak var addressLabel: UILabel!
   @IBOutlet weak var verifyButton: DrizzleBorderButton!
   
-  fileprivate let disposeBag = DisposeBag()
-  fileprivate let backButton = UIBarButtonItem(title: "Back",
-                                               style: .plain,
-                                               target: self,
-                                               action: #selector(backTapped))
+  private let backButton = UIBarButtonItem(title: "Back",
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(backTapped))
+  private let managedContext: NSManagedObjectContext!
+  private let viewModel: ChooseLocationViewModelType
   
-  fileprivate let viewModel: ChooseLocationViewModelType
-  
-  init(viewModel: ChooseLocationViewModelType = ChooseLocationViewModel())
+  init(managedContext: NSManagedObjectContext)
   {
-    self.viewModel = viewModel
+    self.managedContext = managedContext
+    self.viewModel = ChooseLocationViewModel(managedContext: self.managedContext)
     
     super.init(nibName: "ChooseLocationViewController", bundle: nil)
   }
@@ -44,8 +43,8 @@ extension ChooseLocationViewController {
     
     navigationController?.navigationBar.barStyle = .black
     navigationController?.navigationBar.titleTextAttributes = [
-      NSForegroundColorAttributeName: UIColor.drizzleWhite,
-      NSFontAttributeName: UIFont(name: "Quicksand-Regular", size: 20)!
+      NSAttributedStringKey.foregroundColor: UIColor.drizzleWhite,
+      NSAttributedStringKey.font: UIFont(name: "Quicksand-Regular", size: 20)!
     ]
     
     navigationItem.title = "Set Home Location"
@@ -82,29 +81,29 @@ extension ChooseLocationViewController: UITextFieldDelegate {
 fileprivate extension ChooseLocationViewController {
   func setBindings()
   {
-    viewModel.homeLocation.asObservable()
+    viewModel.homeLocation
       .map { location in location != nil }
-      .bindTo(backButton.rx.isEnabled)
-      .addDisposableTo(disposeBag)
+      .bind(to: backButton.reactive.isEnabled)
+      .dispose(in: bag)
     
-    viewModel.apiLocation.asObservable()
+    viewModel.apiLocation
       .map { location in location != nil }
-      .bindNext({ locationExists in
-        self.verifyButton.isEnabled = locationExists
-        self.confirmationLabel.isHidden = !locationExists
-      })
-      .addDisposableTo(disposeBag)
+      .observeNext { [weak self] locationExists in
+        self?.verifyButton.isEnabled = locationExists
+        self?.confirmationLabel.isHidden = !locationExists
+      }
+      .dispose(in: bag)
     
-    viewModel.apiLocation.asObservable()
+    viewModel.apiLocation
       .map { location in location?.formattedAddress }
-      .bindTo(addressLabel.rx.text)
-      .addDisposableTo(disposeBag)
+      .bind(to: addressLabel)
+      .dispose(in: bag)
     
     viewModel.isLoading
-      .subscribe(onNext: { isLoading in
+      .observeNext { isLoading in
         UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
-      })
-      .addDisposableTo(disposeBag)
+      }
+      .dispose(in: bag)
   }
   
   func handleDisplayingBackButton()

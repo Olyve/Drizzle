@@ -6,39 +6,36 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
+import Bond
+import CoreData
+import Moya
 import PromiseKit
-import RxCocoa
-import RxSwift
 import SwiftyJSON
 
 protocol ChooseLocationViewModelType {
-  var homeLocation: Variable<Location?> { get }
-  var apiLocation: Variable<Location?> { get }
-  var isLoading: BehaviorSubject<Bool> { get }
+  var homeLocation: Observable<LocationMO?> { get }
+  var apiLocation: Observable<Location?> { get }
+  var isLoading: Observable<Bool> { get }
   
   func getLocationFrom(addressString: String)
   func setNewHomeLocation()
 }
 
 class ChooseLocationViewModel: ChooseLocationViewModelType {
-  let homeLocation = Variable<Location?>(nil)
-  let apiLocation = Variable<Location?>(nil)
-  let isLoading = BehaviorSubject<Bool>(value: false)
+  let homeLocation = Observable<LocationMO?>(nil)
+  let apiLocation = Observable<Location?>(nil)
+  let isLoading = Observable<Bool>(false)
   
-  fileprivate let disposeBag = DisposeBag()
+  private let locationManager: LocationManagerType
+  private let apiService = MoyaProvider<APIService>()
+  private let managedContext: NSManagedObjectContext!
   
-  fileprivate let locationManager: LocationManagerType
-  fileprivate let networkClient: NetworkClientType
-  
-  init(locationManager: LocationManagerType = LocationManager(),
-       networkClient: NetworkClientType = NetworkClient())
+  init(managedContext: NSManagedObjectContext)
   {
-    self.locationManager = locationManager
-    self.networkClient = networkClient
+    self.managedContext = managedContext
+    self.locationManager = LocationManager(managedContext: self.managedContext)
     
-    self.locationManager.homeLocation.asObservable()
-      .bindTo(homeLocation)
-      .addDisposableTo(disposeBag)
+    self.locationManager.homeLocation.bind(to: self.homeLocation)
   }
 }
 
@@ -46,13 +43,27 @@ class ChooseLocationViewModel: ChooseLocationViewModelType {
 extension ChooseLocationViewModel {
   func getLocationFrom(addressString: String)
   {
-    isLoading.onNext(true)
-    let urlEncodedAddress = addressString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-    let urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(urlEncodedAddress)"
+    isLoading.next(true)
     
-    networkClient.makeRequest(urlString: urlString)
-      .then { data -> Void in self.updateAPILocation(data: data) }
-      .catch { error in NSLog("\(error)") }
+    apiService.request(.verifyLocation(address: addressString)) { result in
+      switch result {
+      case .success(let moyaResponse):
+        do {
+          try moyaResponse.filterSuccessfulStatusCodes()
+          if let data = JSON(rawValue: try moyaResponse.mapJSON()) {
+            self.updateAPILocation(json: data)
+          }
+          else {
+            log.error("Failed to convert response data to JSON")
+          }
+        }
+        catch let error {
+          log.error(error.localizedDescription)
+        }
+      case .failure(let error):
+        log.error(error.localizedDescription)
+      }
+    }
   }
   
   func setNewHomeLocation()
@@ -65,16 +76,14 @@ extension ChooseLocationViewModel {
 
 // MARK: - Helpers
 fileprivate extension ChooseLocationViewModel {
-  func updateAPILocation(data: Data)
+  func updateAPILocation(json: JSON)
   {
-    let json = JSON(data: data)
-    
-    guard let lat = json["results"][0]["geometry"]["location"]["lat"].float,
-          let lng = json["results"][0]["geometry"]["location"]["lng"].float,
+    guard let lat = json["results"][0]["geometry"]["location"]["lat"].double,
+          let lng = json["results"][0]["geometry"]["location"]["lng"].double,
           let address = json["results"][0]["formatted_address"].string
       else { NSLog("Error: Unable to parse location data from results JSON"); return }
     
-    apiLocation.value = Location(latitude: String(lat), longitude: String(lng), formattedAddress: address)
-    isLoading.onNext(false)
+    apiLocation.value = Location(latitude: lat, longitude: lng, formattedAddress: address)
+    isLoading.next(false)
   }
 }

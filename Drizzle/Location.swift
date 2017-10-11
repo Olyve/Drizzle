@@ -6,42 +6,24 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
+// TODO: Find out if this is even necessary. The CoreData model may be all that is required.
+
 import SwiftyJSON
 
-class Location {
-  var latitude: String
-  var longitude: String
+final class Location {
+  var latitude: Double
+  var longitude: Double
   var formattedAddress: String
+  var lastFetchTime: Int32
+  var isHome: Bool
   
-  init(latitude: String, longitude: String, formattedAddress: String)
+  init(latitude: Double, longitude: Double, formattedAddress: String, lastFetchTime: Int32 = 0, isHome: Bool = false)
   {
     self.latitude = latitude
     self.longitude = longitude
     self.formattedAddress = formattedAddress
-  }
-  
-  convenience init?(from json: JSON)
-  {
-    guard let latitude = json[Location.LatitudeKey].string,
-          let longitude = json[Location.LongitudeKey].string,
-          let address = json[Location.AddressKey].string
-      else { return nil }
-    
-    self.init(latitude: latitude, longitude: longitude, formattedAddress: address)
-  }
-}
-
-// MARK: - JSONable
-extension Location {
-  func toJSON() -> [AnyHashable: Any]
-  {
-    let dictionary: [AnyHashable: Any] = [
-      Location.LatitudeKey: latitude,
-      Location.LongitudeKey: longitude,
-      Location.AddressKey: formattedAddress
-    ]
-    
-    return dictionary
+    self.lastFetchTime = lastFetchTime
+    self.isHome = isHome
   }
 }
 
@@ -51,12 +33,7 @@ func ==(lhs: Location, rhs: Location) -> Bool
 {
   return lhs.latitude == rhs.latitude &&
          lhs.longitude == rhs.longitude &&
-         lhs.formattedAddress == rhs.formattedAddress
+         lhs.formattedAddress == rhs.formattedAddress &&
+         lhs.lastFetchTime == rhs.lastFetchTime
 }
 
-// MARK: - Helpers
-fileprivate extension Location {
-  static let LatitudeKey = "latitude"
-  static let LongitudeKey = "longitude"
-  static let AddressKey = "address"
-}

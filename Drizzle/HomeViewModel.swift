@@ -6,109 +6,48 @@
 //  Copyright © 2017 Sam Galizia. All rights reserved.
 //
 
-import PromiseKit
-import RxSwift
-import RxCocoa
-import SwiftyJSON
-import UIKit
+import Bond
+import CoreData
+import ReactiveKit
 
 protocol HomeViewModelType {
-  var homeLocation: Variable<Location?> { get }
-  var weatherFetched: Bool { get }
-  var currentWeather: Variable<JSON?> { get }
-  var dailyWeather: Variable<JSON?> { get }
+  var homeLocation: Observable<LocationMO?> { get }
+  var useMetric: Observable<Bool>{ get }
   
-  func getWeatherForHome()
-  func getWeatherIcon() -> String
+  func updateWeatherInfo()
 }
 
 class HomeViewModel: HomeViewModelType {
-  enum Errors: Error {
-    case weatherFetched
-  }
+  let homeLocation = Observable<LocationMO?>(nil)
+  let useMetric = Observable<Bool>(false)
   
-  let homeLocation = Variable<Location?>(nil)
-  var weatherFetched = false
-  var currentWeather = Variable<JSON?>(nil)
-  var dailyWeather = Variable<JSON?>(nil)
+  private let managedContext: NSManagedObjectContext!
+  private let locationManager: LocationManagerType
+  private let userDefaults: UserDefaults!
+  private let disposeBag = DisposeBag()
   
-  fileprivate let disposeBag = DisposeBag()
-  fileprivate var apiKey = ""
-  
-  fileprivate let locationManager: LocationManagerType
-  fileprivate let networkClient: NetworkClientType
-  
-  init(locationManager: LocationManagerType = LocationManager(),
-       networkClient: NetworkClientType = NetworkClient())
+  init(managedContext: NSManagedObjectContext, userDefaults: UserDefaults = UserDefaults.standard)
   {
-    self.locationManager = locationManager
-    self.networkClient = networkClient
+    self.managedContext = managedContext
+    self.locationManager = LocationManager(managedContext: self.managedContext)
+    self.userDefaults = userDefaults
     
-    getAPIKey()
-    locationManager.homeLocation.asObservable().bindTo(self.homeLocation).addDisposableTo(disposeBag)
-  }
-}
-
-// MARK: - Interface
-extension HomeViewModel {
-  func getWeatherForHome()
-  {
-    weatherFetched = false
-    fetchWeatherData()
-      .then { data -> Void in
-        let json = JSON(data: data)
-        
-        self.currentWeather.value = json["currently"]
-        self.dailyWeather.value = json["daily"]
-        self.weatherFetched = true
+    locationManager.homeLocation.bind(to: homeLocation)
+    
+    userDefaults.reactive
+      .keyPath("useMetric", ofExpectedType: Bool.self, context: .immediateOnMain)
+      .observeNext { [weak self] value in
+        self?.useMetric.value = value
       }
-      .catch { error in NSLog("\(error)") }
+      .dispose(in: disposeBag)
   }
   
-  func getWeatherIcon() -> String
-  {
-    guard let currentWeather = currentWeather.value
-      else { return "clear-day" }
-    
-    switch(currentWeather["icon"].stringValue) {
-      case "clear-night":         return "clear-night"
-      case "rain":                return "rain"
-      case "snow":                return "snow"
-      case "sleet":               return "sleet"
-      case "wind":                return "wind"
-      case "fog":                 return "fog"
-      case "cloudy":              return "cloudy"
-      case "partly-cloudy-day":   return "partly-cloudy"
-      case "partly-cloudy-night": return "partly-cloudy-night"
-      case "thunderstorm":        return "storm"
-      default:                    return "clear-day"
-    }
+  deinit {
+    disposeBag.dispose()
+  }
+  
+  func updateWeatherInfo() {
+    locationManager.getWeatherForHome()
   }
 }
 
-// MARK: - Helpers
-private extension HomeViewModel {
-  func getAPIKey()
-  {
-    guard let file = Bundle.main.url(forResource: "config", withExtension: "json"),
-          let data = try? Data(contentsOf: file)
-      else { NSLog("Error parsing Data from config file"); return }
-    
-    let json = JSON(data: data)
-    apiKey = json["api_key"].stringValue
-  }
-  
-  func fetchWeatherData() -> Promise<Data>
-  {
-    guard weatherFetched == false,
-      let home = homeLocation.value
-      else { return Promise(error: Errors.weatherFetched) }
-    
-    let homeString = "\(home.latitude),\(home.longitude)"
-    let encodedLocation = homeString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
-    let options = "?exclude=[minutely,hourly,flags,alerts]".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-    let urlString = "https://api.darksky.net/forecast/\(apiKey)/\(encodedLocation)\(options)"
-    
-    return networkClient.makeRequest(urlString: urlString)
-  }
-}
